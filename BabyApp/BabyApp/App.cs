@@ -11,13 +11,12 @@ namespace BabyApp
 	{
 		public Button pushButton;
 
-		public App()
+		public App ()
 		{
-			pushButton = new Button
-			{
+			pushButton = new Button {
 				HeightRequest = 160,
 				WidthRequest = 160,
-				Image = ( FileImageSource )FileImageSource.FromFile( "button-up.png" ),
+				Image = "button-up.png",
 				VerticalOptions = LayoutOptions.Center,
 				HorizontalOptions = LayoutOptions.Center
 			};
@@ -25,11 +24,9 @@ namespace BabyApp
 			pushButton.Clicked += PushButton_Clicked;
 
 			// The root page of your application
-			MainPage = new ContentPage
-			{
-				BackgroundColor = Color.Teal,
-				Content = new StackLayout
-				{
+			MainPage = new ContentPage {
+				BackgroundColor = Color.Accent,
+				Content = new StackLayout {
 					VerticalOptions = LayoutOptions.Center,
 					HorizontalOptions = LayoutOptions.Center,
 					Padding = 20,
@@ -41,24 +38,24 @@ namespace BabyApp
 
 		}
 
-		private void PushButton_Clicked( object sender, EventArgs e )
+		private void PushButton_Clicked (object sender, EventArgs e)
 		{
-			Button button = ( Button )sender;
-			button.Image = ( FileImageSource )FileImageSource.FromFile( "button-pressed.png" );
+			//Button button = (Button)sender;
+			//button.Image = "button-pressed.png";
 			// then go to new page
 		}
 
-		protected override void OnStart()
+		protected override void OnStart ()
 		{
 			// Handle when your app starts
 		}
 
-		protected override void OnSleep()
+		protected override void OnSleep ()
 		{
 			// Handle when your app sleeps
 		}
 
-		protected override void OnResume()
+		protected override void OnResume ()
 		{
 			// Handle when your app resumes
 		}
