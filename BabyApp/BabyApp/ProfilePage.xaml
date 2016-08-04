@@ -27,6 +27,7 @@
 						</Picker>
 						<Label x:Name="OccupationLabel" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Text="Occupation" />
 						<Entry x:Name="OccupationEntry" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+						<Button x:Name="RegisterButton" Text="Register" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Clicked="OnRegisterButtonClicked" />
 					</StackLayout.Children>
 				</StackLayout>
 			</ScrollView.Content>

@@ -13,7 +13,15 @@ namespace BabyApp
 
 		public App()
 		{
-			MainPage = new NavigationPage( new WelcomePage() );
+			// if the user is already registered
+			if ( Application.Current.Properties.ContainsKey( "Email" ) )
+			{
+				MainPage = new NavigationPage( new WelcomePage() );
+			}
+			else
+			{
+				MainPage = new NavigationPage( new ProfilePage() );
+			}
 		}
 
 		protected override void OnStart()

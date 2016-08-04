@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BabyApp.SettingsPage">
+	<ContentPage.Padding>
+		<OnPlatform x:TypeArguments="Thickness" iOS="5,20,5,5" Android="5" WinPhone="5" />
+	</ContentPage.Padding>
+	<ContentPage.Content>
+		<ScrollView>
+			<ScrollView.Content>
+				<StackLayout>
+					<StackLayout.Children>
+						<Label Text="Customize Which Needs You See" />
+						<Label Text="Need Type" />
+						<ListView>
+							<!-- TODO: need to add a multi-select list view -->
+						</ListView>
+						<Label Text="Regions" />
+						<ListView>
+							<!-- TODO: need to add a multi-select list view -->
+						</ListView>
+						<Label Text="Countries" />
+						<ListView>
+							<!-- TODO: need to add a multi-select list view -->
+						</ListView>
+						<Label Text="Other 'Tags'" />
+						<Entry x:Name="OtherTagsEntry" Placeholder="Enter other tags assigned to needs" />
+					</StackLayout.Children>
+				</StackLayout>
+			</ScrollView.Content>
+		</ScrollView>
+	</ContentPage.Content>
+</ContentPage>
