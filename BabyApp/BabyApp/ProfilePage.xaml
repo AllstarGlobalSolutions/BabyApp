@@ -1,15 +1,35 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BabyApp.ProfilePage">
+	<ContentPage.Padding>
+		<OnPlatform x:TypeArguments="Thickness" iOS="5,20,5,5" Android="5" WinPhone="5" />
+	</ContentPage.Padding>
 	<ContentPage.Content>
-		<StackLayout>
-			<StackLayout.Children>
-				<Label x:Name="EmailLabel" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Text="Email Address" />
-				<Entry x:Name="EmailEntry" />
-				<Label x:Name="SurnameLabel" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Text="Surname" />
-				<Entry x:Name="SurnameEntry" />
-				<Label x:Name="GivenNamesLabel" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Text="Given Name" />
-				<Entry x:Name="GivenNamesEntry" />
-			</StackLayout.Children>
-		</StackLayout>
+		<ScrollView>
+			<ScrollView.Content>
+				<StackLayout>
+					<StackLayout.Children>
+						<Label x:Name="EmailLabel" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Text="Email Address" />
+						<Entry x:Name="EmailEntry" />
+						<Label x:Name="Optional" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Text="The following data is optional, but it will help our non-profit organizations in understanding what type of donors they have." />
+						<Label x:Name="SurnameLabel" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Text="Surname" />
+						<Entry x:Name="SurnameEntry" />
+						<Label x:Name="GivenNamesLabel" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Text="Given Name" />
+						<Entry x:Name="GivenNamesEntry" />
+						<Label x:Name="DOBLabel" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Text="Date of Birth" />
+						<DatePicker x:Name="DOBDatePicker" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+						<Label x:Name="GenderLabel" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Text="Gender" />
+						<Picker x:Name="GenderPicker">
+							<Picker.Items>
+								<x:String>Not Selected</x:String>
+								<x:String>Male</x:String>
+								<x:String>Female</x:String>
+							</Picker.Items>
+						</Picker>
+						<Label x:Name="OccupationLabel" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Text="Occupation" />
+						<Entry x:Name="OccupationEntry" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+					</StackLayout.Children>
+				</StackLayout>
+			</ScrollView.Content>
+		</ScrollView>
 	</ContentPage.Content>
 </ContentPage>
