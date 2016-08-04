@@ -96,6 +96,8 @@
     <ITunesArtwork Include="iTunesArtwork" />
     <ITunesArtwork Include="iTunesArtwork@2x" />
     <None Include="packages.config" />
+    <Compile Include="DeviceInfo.cs" />
+    <Compile Include="PlatformSoundPlayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BabyApp\BabyApp.csproj">

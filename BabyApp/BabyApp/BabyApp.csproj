@@ -61,6 +61,15 @@
     <Compile Include="NeedDetailViewPage.xaml.cs">
       <DependentUpon>NeedDetailViewPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NeedTabbedPage.xaml.cs">
+      <DependentUpon>NeedTabbedPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OrganizationProfilePage.xaml.cs">
+      <DependentUpon>OrganizationProfilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IDeviceInfo.cs" />
+    <Compile Include="IPlatformSoundPlayer.cs" />
+    <Compile Include="SoundPlayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GettingStarted.Xamarin" />
@@ -89,6 +98,12 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="NeedDetailViewPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NeedTabbedPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrganizationProfilePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
