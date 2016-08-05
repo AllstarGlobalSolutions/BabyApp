@@ -15,7 +15,7 @@ namespace BabyApp
 
 		public void OnRegisterButtonClicked( object sender, EventArgs e )
 		{
-			var client = new HttpClient();
+/*			var client = new HttpClient();
 			client.BaseAddress = new Uri( "PATH/TO/RESTful API" );
 			var response = client.GetAsync( "sub url" );
 			var content = response.
@@ -41,7 +41,7 @@ namespace BabyApp
 					}
 				}
 			}
-
+			*/
 			//			Application.Current.Properties[ "Email" ] = this.EmailEntry.Text;
 		}
 
@@ -61,8 +61,8 @@ namespace BabyApp
 		//			return placeobject.places;
 		//		}
 
-		protected async Task<string> Register()
-		{
+//		protected async Task<string> Register()
+//		{
 
 
 
@@ -78,7 +78,7 @@ namespace BabyApp
 			//				placeobject = JsonConvert.DeserializeObject<Placeobject>( placesJson );
 			//			}
 			//			return placeobject.places;
-		}
+//		}
 	}
 }
 

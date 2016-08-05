@@ -17,7 +17,7 @@ namespace BabyApp.Droid
 				previousAudioTrack.Release();
 			}
 
-			AudioTrack audioTrack = new AudioTrack( Stream.Music, samplingRate, ChannelOut.Mono, Android.Media.Encoding.Pcm16bit, pcmData.Length * sizeof( short ) );
+			AudioTrack audioTrack = new AudioTrack( Stream.Music, samplingRate, ChannelOut.Mono, Android.Media.Encoding.Pcm16bit, pcmData.Length * sizeof( short ), AudioTrackMode.Stream );
 			audioTrack.Write( pcmData, 0, pcmData.Length );
 			audioTrack.Play();
 
