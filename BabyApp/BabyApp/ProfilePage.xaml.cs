@@ -11,6 +11,11 @@ namespace BabyApp
 		public ProfilePage()
 		{
 			InitializeComponent();
+
+			if ( Application.Current.Properties.ContainsKey( "Email" ) )
+			{
+				RegisterButton.IsVisible = false;
+			}
 		}
 
 		public void OnRegisterButtonClicked( object sender, EventArgs e )
