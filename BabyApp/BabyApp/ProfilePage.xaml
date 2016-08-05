@@ -1,36 +1,48 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BabyApp.ProfilePage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+				 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+				 xmlns:toolkit="clr-namespace:AGS.Toolkit;assembly=AGS.Toolkit"
+				 x:Class="BabyApp.ProfilePage" BackgroundColor="Accent">
+	
 	<ContentPage.Padding>
 		<OnPlatform x:TypeArguments="Thickness" iOS="5,20,5,5" Android="5" WinPhone="5" />
 	</ContentPage.Padding>
-	<ContentPage.Content>
+	
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<Style x:Key="labelStyle" TargetType="ExtendedLabel">
+				<Setter Property="HorizontalOptions" Value="Center" />
+				<Setter Property="VeriticalOptions" Value="CenterAndExpand" />
+				<Setter Property="PointSize" Value="10.0" />
+			</Style>
+		</ResourceDictionary>
+	</ContentPage.Resources>
+	
+	<Frame OutlineColor="Navy" BorderColor="Navy">
 		<ScrollView>
-			<ScrollView.Content>
-				<StackLayout>
-					<StackLayout.Children>
-						<Label x:Name="EmailLabel" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Text="Email Address" />
-						<Entry x:Name="EmailEntry" />
-						<Label x:Name="Optional" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Text="The following data is optional, but it will help our non-profit organizations in understanding what type of donors they have." />
-						<Label x:Name="SurnameLabel" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Text="Surname" />
-						<Entry x:Name="SurnameEntry" />
-						<Label x:Name="GivenNamesLabel" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Text="Given Name" />
-						<Entry x:Name="GivenNamesEntry" />
-						<Label x:Name="DOBLabel" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Text="Date of Birth" />
-						<DatePicker x:Name="DOBDatePicker" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-						<Label x:Name="GenderLabel" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Text="Gender" />
-						<Picker x:Name="GenderPicker">
-							<Picker.Items>
-								<x:String>Not Selected</x:String>
-								<x:String>Male</x:String>
-								<x:String>Female</x:String>
-							</Picker.Items>
-						</Picker>
-						<Label x:Name="OccupationLabel" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Text="Occupation" />
-						<Entry x:Name="OccupationEntry" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-						<Button x:Name="RegisterButton" Text="Register" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Clicked="OnRegisterButtonClicked" />
-					</StackLayout.Children>
-				</StackLayout>
-			</ScrollView.Content>
+			<StackLayout>
+				<ActivityIndicator x:Name="activityIndicator" />
+				<toolkit:ExtendedLabel Style="{StaticResource labelStyle}" Text="Email Address" />
+				<Entry x:Name="EmailEntry" />
+				<toolkit:ExtendedLabel Style="{StaticResource labelStyle}" Text="The following data is optional, but it will help our non-profit organizations in understanding what type of donors they have." />
+				<toolkit:ExtendedLabel Style="{StaticResource labelStyle}" Text="Surname" />
+				<Entry x:Name="SurnameEntry" />
+				<toolkit:ExtendedLabel Style="{StaticResource labelStyle}" Text="Given Name" />
+				<Entry x:Name="GivenNamesEntry" />
+				<toolkit:ExtendedLabel Style="{StaticResource labelStyle}" Text="Date of Birth" />
+				<DatePicker x:Name="DOBDatePicker" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+				<toolkit:ExtendedLabel Style="{StaticResource labelStyle}" Text="Gender" />
+				<Picker x:Name="GenderPicker">
+					<Picker.Items>
+						<x:String>Not Selected</x:String>
+						<x:String>Male</x:String>
+						<x:String>Female</x:String>
+					</Picker.Items>
+				</Picker>
+				<toolkit:ExtendedLabel Style="{StaticResource labelStyle}" Text="Occupation" />
+				<Entry x:Name="OccupationEntry" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+				<Button x:Name="RegisterButton" Text="Register" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Clicked="OnRegisterButtonClicked" />
+			</StackLayout>
 		</ScrollView>
-	</ContentPage.Content>
+	</Frame>
 </ContentPage>

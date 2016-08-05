@@ -1,9 +1,12 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BabyApp.WelcomePage" BackgroundColor="Accent">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+				 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+				 xmlns:local="clr-namespace:BabyApp"
+				 x:Class="BabyApp.WelcomePage" BackgroundColor="Accent">
 	<ContentPage.Content>
 		<StackLayout BackgroundColor="Accent" VerticalOptions="Center" HorizontalOptions="Center">
 			<StackLayout.Children>
-				<Button x:Name="PushButton" HeightRequest="160" WidthRequest="160" Image="button-up.png" VerticalOptions="Center" HorizontalOptions="Center" Clicked="OnPushButtonClicked" />
+				<Image Source="{local:ImageResource BabyApp.Images.button-up.png}" />
 			</StackLayout.Children>
 		</StackLayout>
 	</ContentPage.Content>

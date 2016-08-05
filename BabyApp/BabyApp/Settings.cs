@@ -17,7 +17,7 @@ namespace BabyApp
 			{
 				if ( Application.Current.Properties.ContainsKey( EMAIL_ADDRESS ) )
 				{
-					return Application.Current.Properties[ EMAIL_ADDRESS ];
+					return Application.Current.Properties[ EMAIL_ADDRESS ].ToString();
 				}
 				return null;
 			}
