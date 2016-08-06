@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using Xamarin.Forms;
+using AGS.Toolkit;
 
 namespace BabyApp
 {
@@ -13,6 +13,8 @@ namespace BabyApp
 
 		public App()
 		{
+			AGS.Toolkit.Toolkit.Init();
+
 			// if the user is already registered
 			if ( Application.Current.Properties.ContainsKey( "Email" ) )
 			{

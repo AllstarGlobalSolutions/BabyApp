@@ -35,12 +35,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="BoolToColorConverter.cs" />
+    <Compile Include="BoolToObjectConverter.cs" />
+    <Compile Include="BoolToStringComverter.cs" />
     <Compile Include="CheckBox.xaml.cs">
       <DependentUpon>CheckBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ColorViewModel.cs" />
+    <Compile Include="DateTimeViewModel.cs" />
+    <Compile Include="DoubleToIntConverter.cs" />
     <Compile Include="ExtendedLabel.cs" />
     <Compile Include="HslColorExtension.cs" />
+    <Compile Include="IntToBoolConverter.cs" />
+    <Compile Include="NamedColor.cs" />
+    <Compile Include="NamedColorGroup.cs" />
+    <Compile Include="ObjectToIndexConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Toolkit.cs" />
+    <Compile Include="ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">

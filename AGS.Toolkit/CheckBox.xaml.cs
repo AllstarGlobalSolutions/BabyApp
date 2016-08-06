@@ -10,25 +10,51 @@ namespace AGS.Toolkit
 {
 	public partial class CheckBox : ContentView
 	{
-		public static readonly BindableProperty TextProperty = BindableProperty.Create( "Text", typeof( string ), typeof( CheckBox ), null,
-									propertyChanged: ( bindable, oldValue, newValue ) =>
-									{
-										( ( CheckBox )bindable ).textLabel.Text = ( string )newValue;
-									} );
+		public event EventHandler<bool> CheckedChanged;
 
-		public static readonly BindableProperty FontSizeProperty = BindableProperty.Create( "FontSize", typeof( double ), typeof( CheckBox ), Device.GetNamedSize( NamedSize.Default, typeof( Label ) ),
-									propertyChanged: ( bindable, oldValue, newValue ) =>
-									{
-										CheckBox checkBox = ( ( CheckBox )bindable );
-										checkBox.boxLabel.FontSize = ( double )newValue;
-										checkBox.textLabel.FontSize = ( double )newValue;
-									} );
+		public CheckBox()
+		{
+			InitializeComponent();
+		}
 
+		// Text Property
+		public static readonly BindableProperty TextProperty = BindableProperty.Create( "Text", typeof( string ), typeof( CheckBox ), null );
+		public string Text
+		{
+			get { return ( string )GetValue( TextProperty ); }
+			set { SetValue( TextProperty, value ); }
+		}
+
+		// TextColor property
+		public static readonly BindableProperty TextColorProperty = BindableProperty.Create( "TextColor", typeof( Color ), typeof( CheckBox ), Color.Default );
+		public Color TextColor
+		{
+			get { return ( Color )GetValue( TextColorProperty ); }
+			set { SetValue( TextColorProperty, value ); }
+		}
+
+		// FontSize property
+		public static readonly BindableProperty FontSizeProperty = BindableProperty.Create( "FontSize", typeof( double ), typeof( CheckBox ), Device.GetNamedSize( NamedSize.Default, typeof( Label ) ) );
+		[TypeConverter( typeof( FontSizeConverter ) )]
+		public double FontSize
+		{
+			get { return ( double )GetValue( FontSizeProperty ); }
+			set { SetValue( FontSizeProperty, value ); }
+		}
+
+		// FontAttributes property
+		public static readonly BindableProperty FontAttributesProperty = BindableProperty.Create( "FontAttributes", typeof( FontAttributes ), typeof( CheckBox ), FontAttributes.None );
+		public FontAttributes FontAttributes
+		{
+			get { return ( FontAttributes )GetValue( FontAttributesProperty ); }
+			set { SetValue( FontAttributesProperty, value ); }
+		}
+
+		// IsChecked property
 		public static readonly BindableProperty IsCheckedProperty = BindableProperty.Create( "IsChecked", typeof( bool ), typeof( CheckBox ), false,
 									propertyChanged: ( bindable, oldValue, newValue ) =>
 									{
 										CheckBox checkBox = ( ( CheckBox )bindable );
-										checkBox.textLabel.Text = ( bool )newValue ? "0u2611" : "0u2610";
 
 										EventHandler<bool> eventHandler = checkBox.CheckedChanged;
 										if ( eventHandler != null )
@@ -37,25 +63,6 @@ namespace AGS.Toolkit
 										}
 									} );
 
-		public event EventHandler<bool> CheckedChanged;
-
-		public CheckBox()
-		{
-			InitializeComponent();
-		}
-		
-		public string Text
-		{
-			get { return ( string )GetValue( TextProperty ); }
-			set { SetValue( TextProperty, value );  }
-		}
-
-		[TypeConverter( typeof( FontSizeConverter ) )]
-		public double FontSize
-		{
-			get { return ( double )GetValue( FontSizeProperty ); }
-			set { SetValue( FontSizeProperty, value ); }
-		}
 
 		public bool IsChecked
 		{
