@@ -9,21 +9,14 @@ namespace BabyApp
 {
 	public class App : Application
 	{
-		public Button pushButton;
+		public ProfileViewModel ProfileViewModel { get; private set; }
 
 		public App()
 		{
-			AGS.Toolkit.Toolkit.Init();
+			Toolkit.Init();
+			ProfileViewModel = new ProfileViewModel();
 
-			// if the user is already registered
-			if ( Application.Current.Properties.ContainsKey( "Email" ) )
-			{
-				MainPage = new NavigationPage( new WelcomePage() );
-			}
-			else
-			{
-				MainPage = new NavigationPage( new ProfilePage() );
-			}
+			MainPage = new NavigationPage( new WelcomePage() );
 		}
 
 		protected override void OnStart()

@@ -10,11 +10,16 @@ namespace BabyApp
 		public WelcomePage()
 		{
 			InitializeComponent();
+
+			if ( String.IsNullOrEmpty( Settings.Email ) )
+			{
+				Navigation.PushModalAsync( new ProfilePage() );
+			}
 		}
 
-		private void OnPushButtonClicked( object sender, EventArgs e )
+		void OnImageTapped( object sender, EventArgs e )
 		{
-
+			Navigation.PushAsync( new NeedViewPage() );
 		}
 	}
 }

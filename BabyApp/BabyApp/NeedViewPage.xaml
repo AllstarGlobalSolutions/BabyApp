@@ -2,12 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BabyApp.NeedViewPage">
 	<ContentPage.Content>
 		<ActivityIndicator x:Name="activityIndicator"></ActivityIndicator>
-		<Image x:Name="adImage" Source="location" />
-		<Image x:Name="needImage" PropertyChanged="OnImagePropertyChanged">
-			<Image.Source>
-				<UriImageSource Uri="location" />
-			</Image.Source>
-		</Image>
+		<Image x:Name="adImage" HeightRequest="40" HorizontalOptions="Center" />
+		<Image x:Name="needImage" HorizontalOptions="Center" VerticalOptions="FillAndExpand" PropertyChanged="OnImagePropertyChanged" />
+		<Label x:Name="Caption" HorizontalOptions="Center" />
 	</ContentPage.Content>
 
 	<ContentPage.ToolbarItems>
@@ -16,9 +13,9 @@
 				<OnPlatform x:TypeArguments="FileImageSource" iOS="edit.png" Android="ic_action_edit.png" />
 			</ToolbarItem.Icon>
 		</ToolbarItem>
-		<ToolbarItem Text="Org Info" Order="Primary" Clicked="OnToolbarItemClicked=">
+		<ToolbarItem Text="Org Info" Order="Primary" Clicked="OnToolbarItemClicked">
 			<ToolbarItem.Icon>
-				<OnPlatform x:TypeArguments="FileImageSource" iOS="search.ppng" Android="ic_action_search.png" />
+				<OnPlatform x:TypeArguments="FileImageSource" iOS="search.png" Android="ic_action_search.png" />
 			</ToolbarItem.Icon>
 		</ToolbarItem>
 		<ToolbarItem Text="Donate" Order="Primary" Clicked="OnToolbarItemClicked">
@@ -31,7 +28,7 @@
 				<OnPlatform x:TypeArguments="FileImageSource" iOS="save.png" Android="ic_action_save.png" />
 			</ToolbarItem.Icon>
 		</ToolbarItem>
-		<ToolbarItem Text="Save" Order="Secondary" Clicked="OnToolbarItemClicked">
+		<ToolbarItem Text="Saved Needs" Order="Secondary" Clicked="OnToolbarItemClicked">
 			<ToolbarItem.Icon>
 				<OnPlatform x:TypeArguments="FileImageSource" iOS="viewsaved.png" Android="ic_action_viewsaved.png" />
 			</ToolbarItem.Icon>

@@ -1,16 +1,29 @@
 ﻿using System;
 using System.Net.Http;
-using System.IO;
-using System.Collections.Generic;
 using Xamarin.Forms;
+using System.Threading.Tasks;
+using System.Runtime.Serialization.Json;
+using System.Runtime.Serialization;
+using System.Text;
+using Newtonsoft.Json;
 
 namespace BabyApp
 {
 	public partial class ProfilePage : ContentPage
 	{
+/*
+		[DataContract]
+		class ImageList
+		{
+			[DataMember( Name = "photos" )]
+			public List<string> Photos = null;
+		}*/
 		public ProfilePage()
 		{
 			InitializeComponent();
+
+			ProfileViewModel profileViewModel = ( ( App )Application.Current ).ProfileViewModel;
+			BindingContext = profileViewModel;
 
 			if ( Application.Current.Properties.ContainsKey( "Email" ) )
 			{
@@ -18,36 +31,51 @@ namespace BabyApp
 			}
 		}
 
+		// return true handles disables the back button forcing the user to click the regiser button
+		protected override bool OnBackButtonPressed()
+		{
+			return true;
+		}
+
 		public void OnRegisterButtonClicked( object sender, EventArgs e )
 		{
-/*			var client = new HttpClient();
-			client.BaseAddress = new Uri( "PATH/TO/RESTful API" );
-			var response = client.GetAsync( "sub url" );
-			var content = response.
-			request.ContentType = "application/json";
-			request.Method = "POST";
+			RegisterUserAsync();
+		}
 
-			using ( HttpWebResponse response = await request.GetResponseAsync() )
-			{
-				if ( response.StatusCode == HttpStatusCode.OK )
-				{
+		public async void RegisterUserAsync()
+		{
+/* TODO: TEST
+			HttpClient client = new HttpClient();
+			// The default size of this property is the maximum size of an integer. Therefore, the property is set to a smaller value, as a safeguard,
+			//    in order to limit the amount of data that the application will accept as a response from the web service.
+			client.MaxResponseContentBufferSize = 256000;
 
-				}
-				using ( StreamReader reader = new StreamReader( response.GetResponseStream() ) )
-				{
-					var content = reader.ReadToEnd();
-					if ( string.IsNullOrWhiteSpace( content ) )
-					{
+			Uri uri = new Uri( "http://localhost:61360/Accounts/Register" );
+			string json = JsonConvert.SerializeObject( profileViewModel );
+			StringContent content = new StringContent( json, Encoding.UTF8, "application/json" );
 
-					}
-					else
-					{
+			HttpResponseMessage response = await client.PostAsync( uri, content );
+*/
+//			if ( response.IsSuccessStatusCode )
+//			{
+				// Save Settings locally
+//				SaveSettings();
 
-					}
-				}
-			}
-			*/
-			//			Application.Current.Properties[ "Email" ] = this.EmailEntry.Text;
+				// pop this page and go to welcome page
+				await Navigation.PopModalAsync();
+//			}
+		}
+
+		public void SaveSettings()
+		{
+			ProfileViewModel profileViewModel = ( ProfileViewModel )BindingContext;
+
+			Settings.Email = profileViewModel.Email;
+			Settings.Surname = profileViewModel.Surname;
+			Settings.GivenName = profileViewModel.GivenName;
+			Settings.AgeRange = profileViewModel.AgeRange;
+			Settings.Gender = profileViewModel.Gender;
+			Settings.Occupation = profileViewModel.Occupation;
 		}
 
 
@@ -66,24 +94,24 @@ namespace BabyApp
 		//			return placeobject.places;
 		//		}
 
-//		protected async Task<string> Register()
-//		{
+		//		protected async Task<string> Register()
+		//		{
 
 
 
 
 
-			//			var client = new System.Net.Http.HttpClient();
-			//			client.BaseAddress = new Uri( "http://api.geonames.org/" );
-			//			var response = await client.GetAsync( "postalCodeLookupJSON?postalcode=751010&country=IN&username=nirmalh" );
-			//			var placesJson = response.Content.ReadAsStringAsync().Result;
-			//			Placeobject placeobject = new Placeobject();
-			//			if ( placesJson != "" )
-			//			{
-			//				placeobject = JsonConvert.DeserializeObject<Placeobject>( placesJson );
-			//			}
-			//			return placeobject.places;
-//		}
+		//			var client = new System.Net.Http.HttpClient();
+		//			client.BaseAddress = new Uri( "http://api.geonames.org/" );
+		//			var response = await client.GetAsync( "postalCodeLookupJSON?postalcode=751010&country=IN&username=nirmalh" );
+		//			var placesJson = response.Content.ReadAsStringAsync().Result;
+		//			Placeobject placeobject = new Placeobject();
+		//			if ( placesJson != "" )
+		//			{
+		//				placeobject = JsonConvert.DeserializeObject<Placeobject>( placesJson );
+		//			}
+		//			return placeobject.places;
+		//		}
 	}
 }
 

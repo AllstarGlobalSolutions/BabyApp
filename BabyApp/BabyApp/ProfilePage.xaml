@@ -2,47 +2,41 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
 				 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 				 xmlns:toolkit="clr-namespace:AGS.Toolkit;assembly=AGS.Toolkit"
+				 xmlns:local="clr-namespace:BabyApp"
 				 x:Class="BabyApp.ProfilePage" BackgroundColor="Accent">
 	
 	<ContentPage.Padding>
-		<OnPlatform x:TypeArguments="Thickness" iOS="5,20,5,5" Android="5" WinPhone="5" />
+		<OnPlatform x:TypeArguments="Thickness" iOS="0,20,0,0" />
 	</ContentPage.Padding>
 	
-	<ContentPage.Resources>
-		<ResourceDictionary>
-			<Style x:Key="labelStyle" TargetType="ExtendedLabel">
-				<Setter Property="HorizontalOptions" Value="Center" />
-				<Setter Property="VeriticalOptions" Value="CenterAndExpand" />
-				<Setter Property="PointSize" Value="10.0" />
-			</Style>
-		</ResourceDictionary>
-	</ContentPage.Resources>
-	
-	<Frame OutlineColor="Navy" BorderColor="Navy">
-		<ScrollView>
-			<StackLayout>
-				<ActivityIndicator x:Name="activityIndicator" />
-				<toolkit:ExtendedLabel Style="{StaticResource labelStyle}" Text="Email Address" />
-				<Entry x:Name="EmailEntry" />
-				<toolkit:ExtendedLabel Style="{StaticResource labelStyle}" Text="The following data is optional, but it will help our non-profit organizations in understanding what type of donors they have." />
-				<toolkit:ExtendedLabel Style="{StaticResource labelStyle}" Text="Surname" />
-				<Entry x:Name="SurnameEntry" />
-				<toolkit:ExtendedLabel Style="{StaticResource labelStyle}" Text="Given Name" />
-				<Entry x:Name="GivenNamesEntry" />
-				<toolkit:ExtendedLabel Style="{StaticResource labelStyle}" Text="Date of Birth" />
-				<DatePicker x:Name="DOBDatePicker" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-				<toolkit:ExtendedLabel Style="{StaticResource labelStyle}" Text="Gender" />
-				<Picker x:Name="GenderPicker">
-					<Picker.Items>
-						<x:String>Not Selected</x:String>
+	<StackLayout>
+		<TableView x:Name="tableView" Intent="Form">
+			<TableRoot Title="Profile Data">
+				<TableSection Title="Required">
+					<EntryCell Label="Email" Text="{Binding Email}" Placeholder="Email Address" Keyboard="Email" />
+				</TableSection>
+				<TableSection Title="Optional">
+					<EntryCell Label="Surname" Text="{Binding Surname}" Placeholder="Surname" Keyboard="Text" />
+					<EntryCell Label="Given Name" Text="{Binding GivenName}" Placeholder="Given Name(s)" Keyboard="Text" />
+					<EntryCell Label="Phone Number" Text="{Binding Phone}" Keyboard="Telephone" />
+					<EntryCell Label="Occupation" Text="{Binding Occupation}" Placeholder="Occupation" Keyboard="Text" />
+					<toolkit:PickerCell Label="Gender:" Title="Gender" SelectedValue="{Binding Gender}">
+						<x:String>Not Set</x:String>
 						<x:String>Male</x:String>
 						<x:String>Female</x:String>
-					</Picker.Items>
-				</Picker>
-				<toolkit:ExtendedLabel Style="{StaticResource labelStyle}" Text="Occupation" />
-				<Entry x:Name="OccupationEntry" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-				<Button x:Name="RegisterButton" Text="Register" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Clicked="OnRegisterButtonClicked" />
-			</StackLayout>
-		</ScrollView>
-	</Frame>
+					</toolkit:PickerCell>
+					<toolkit:PickerCell Label="Age Range:" Title="Age Range" SelectedValue="{Binding AgeRange}">
+						<x:String>10 - 19</x:String>
+						<x:String>20 - 29</x:String>
+						<x:String>30 - 39</x:String>
+						<x:String>40 - 49</x:String>
+						<x:String>50 - 59</x:String>
+						<x:String>60 - 99</x:String>
+					</toolkit:PickerCell>
+				</TableSection>
+			</TableRoot>
+		</TableView>
+
+		<Button x:Name="RegisterButton" Text="Register" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Clicked="OnRegisterButtonClicked" IsEnabled="{Binding IsValid}" />
+	</StackLayout>
 </ContentPage>

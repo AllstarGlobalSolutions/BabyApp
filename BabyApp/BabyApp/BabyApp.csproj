@@ -39,6 +39,7 @@
     <Compile Include="ImageResourceExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="ProfileViewModel.cs" />
     <Compile Include="WelcomePage.xaml.cs">
       <DependentUpon>WelcomePage.xaml</DependentUpon>
     </Compile>
@@ -54,11 +55,11 @@
     <Compile Include="NeedViewPage.xaml.cs">
       <DependentUpon>NeedViewPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DonationPage.xaml.cs">
-      <DependentUpon>DonationPage.xaml</DependentUpon>
+    <Compile Include="DonationViewPage.xaml.cs">
+      <DependentUpon>DonationViewPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SavedNeedsPage.xaml.cs">
-      <DependentUpon>SavedNeedsPage.xaml</DependentUpon>
+    <Compile Include="SavedNeedsViewPage.xaml.cs">
+      <DependentUpon>SavedNeedsViewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="NeedDetailViewPage.xaml.cs">
       <DependentUpon>NeedDetailViewPage.xaml</DependentUpon>
@@ -66,8 +67,8 @@
     <Compile Include="NeedTabbedPage.xaml.cs">
       <DependentUpon>NeedTabbedPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="OrganizationProfilePage.xaml.cs">
-      <DependentUpon>OrganizationProfilePage.xaml</DependentUpon>
+    <Compile Include="OrganizationViewPage.xaml.cs">
+      <DependentUpon>OrganizationViewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="IDeviceInfo.cs" />
     <Compile Include="IPlatformSoundPlayer.cs" />
@@ -93,10 +94,10 @@
     <EmbeddedResource Include="NeedViewPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="DonationPage.xaml">
+    <EmbeddedResource Include="DonationViewPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="SavedNeedsPage.xaml">
+    <EmbeddedResource Include="SavedNeedsViewPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="NeedDetailViewPage.xaml">
@@ -105,7 +106,7 @@
     <EmbeddedResource Include="NeedTabbedPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="OrganizationProfilePage.xaml">
+    <EmbeddedResource Include="OrganizationViewPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

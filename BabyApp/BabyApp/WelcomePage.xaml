@@ -6,7 +6,11 @@
 	<ContentPage.Content>
 		<StackLayout BackgroundColor="Accent" VerticalOptions="Center" HorizontalOptions="Center">
 			<StackLayout.Children>
-				<Image Source="{local:ImageResource BabyApp.Images.button-up.png}" />
+				<Image Source="{local:ImageResource BabyApp.Images.button-up.png}">
+					<Image.GestureRecognizers>
+						<TapGestureRecognizer Tapped="OnImageTapped"/>
+					</Image.GestureRecognizers>
+				</Image>
 			</StackLayout.Children>
 		</StackLayout>
 	</ContentPage.Content>
