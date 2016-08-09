@@ -104,9 +104,9 @@ namespace BabyApp.Helpers
 		{
 			get
 			{
-				if ( properties.ContainsKey( OCCUMPATION ) )
+				if ( properties.ContainsKey( OCCUPATION ) )
 				{
-					return ( string )properties[ AGE_RANGE ];
+					return ( string )properties[ OCCUPATION ];
 				}
 				return null;
 			}

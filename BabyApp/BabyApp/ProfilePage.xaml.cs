@@ -1,33 +1,25 @@
 ﻿using System;
-using System.Net.Http;
 using Xamarin.Forms;
-using System.Threading.Tasks;
-using System.Runtime.Serialization.Json;
-using System.Runtime.Serialization;
-using System.Text;
-using Newtonsoft.Json;
+using BabyApp.Helpers;
 using BabyApp.ViewModels;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Runtime.Serialization.Json;
+using System.IO;
 
 namespace BabyApp
 {
 	public partial class ProfilePage : ContentPage
 	{
-		/*
-				[DataContract]
-				class ImageList
-				{
-					[DataMember( Name = "photos" )]
-					public List<string> Photos = null;
-				}*/
+		ProfileViewModel profileViewModel = ( ( App )Application.Current ).ProfileViewModel;
 
 		public ProfilePage()
 		{
 			InitializeComponent();
 
-			ProfileViewModel profileViewModel = ( ( App )Application.Current ).ProfileViewModel;
 			BindingContext = profileViewModel;
 
-			if ( Application.Current.Properties.ContainsKey( "Email" ) )
+			if ( !String.IsNullOrEmpty( Settings.Email ) )
 			{
 				RegisterButton.IsVisible = false;
 			}
@@ -41,31 +33,31 @@ namespace BabyApp
 
 		public void OnRegisterButtonClicked( object sender, EventArgs e )
 		{
-			RegisterUserAsync();
+			RegisterUser();
 		}
 
-		public async void RegisterUserAsync()
+		public async void RegisterUser()
 		{
-			/* TODO: TEST
-						HttpClient client = new HttpClient();
-						// The default size of this property is the maximum size of an integer. Therefore, the property is set to a smaller value, as a safeguard,
-						//    in order to limit the amount of data that the application will accept as a response from the web service.
-						client.MaxResponseContentBufferSize = 256000;
+			using ( var client = new HttpClient() )
+			{
+				client.BaseAddress = new Uri( "http:192.168.1.6:61360/api" );
+				client.DefaultRequestHeaders.Accept.Clear();
+				client.DefaultRequestHeaders.Accept.Add( new MediaTypeWithQualityHeaderValue( "application/json" ) );
+				var serializer = new DataContractJsonSerializer( typeof( ProfileViewModel ) );
+				var ms = new MemoryStream();
+				serializer.WriteObject( ms, profileViewModel );
+				HttpContent content = new StreamContent( ms );
+				HttpResponseMessage response = await client.PostAsync( "/Donors/Register", content );
 
-						Uri uri = new Uri( "http://localhost:61360/Accounts/Register" );
-						string json = JsonConvert.SerializeObject( profileViewModel );
-						StringContent content = new StringContent( json, Encoding.UTF8, "application/json" );
+				if ( response.IsSuccessStatusCode )
+				{
+					// Save Settings locally
+					SaveSettings();
 
-						HttpResponseMessage response = await client.PostAsync( uri, content );
-			*/
-			//			if ( response.IsSuccessStatusCode )
-			//			{
-			// Save Settings locally
-			//				SaveSettings();
-
-			// pop this page and go to welcome page
-			await Navigation.PopModalAsync();
-			//			}
+					// pop this page and go to welcome page
+					await Navigation.PopModalAsync();
+				}
+			}
 		}
 
 		public void SaveSettings()
