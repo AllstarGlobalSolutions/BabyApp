@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BabyApp.NeedViewPage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BabyApp.NeedPage" BackgroundColor="Accent">
 	<ContentPage.Content>
 		<StackLayout>
 			<ActivityIndicator x:Name="activityIndicator">
@@ -12,12 +12,12 @@
 	<ContentPage.ToolbarItems>
 		<ToolbarItem Text="Details" Order="Primary" Clicked="OnToolbarItemClicked">
 			<ToolbarItem.Icon>
-				<OnPlatform x:TypeArguments="FileImageSource" iOS="glasses.png" Android="ic_action_edit.png" />
+				<OnPlatform x:TypeArguments="FileImageSource" iOS="glasses.png" Android="ai_read.png" />
 			</ToolbarItem.Icon>
 		</ToolbarItem>
 		<ToolbarItem Text="Org Info" Order="Primary" Clicked="OnToolbarItemClicked">
 			<ToolbarItem.Icon>
-				<OnPlatform x:TypeArguments="FileImageSource" iOS="addressbook.png" Android="ic_action_search.png" />
+				<OnPlatform x:TypeArguments="FileImageSource" iOS="addressbook.png" Android="ai-about.png" />
 			</ToolbarItem.Icon>
 		</ToolbarItem>
 		<ToolbarItem Text="Donate" Order="Primary" Clicked="OnToolbarItemClicked">
@@ -27,12 +27,12 @@
 		</ToolbarItem>
 		<ToolbarItem Text="Save" Order="Primary" Clicked="OnToolbarItemClicked">
 			<ToolbarItem.Icon>
-				<OnPlatform x:TypeArguments="FileImageSource" iOS="save.png" Android="ic_action_save.png" />
+				<OnPlatform x:TypeArguments="FileImageSource" iOS="save.png" Android="ai-save.png" />
 			</ToolbarItem.Icon>
 		</ToolbarItem>
 		<ToolbarItem Text="Saved Needs" Order="Primary" Clicked="OnToolbarItemClicked">
 			<ToolbarItem.Icon>
-				<OnPlatform x:TypeArguments="FileImageSource" iOS="star.png" Android="ic_action_viewsaved.png" />
+				<OnPlatform x:TypeArguments="FileImageSource" iOS="star.png" Android="ai_important.png" />
 			</ToolbarItem.Icon>
 		</ToolbarItem>
 	</ContentPage.ToolbarItems>

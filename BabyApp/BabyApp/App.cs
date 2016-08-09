@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using Xamarin.Forms;
 using AGS.Toolkit;
+using BabyApp.ViewModels;
+using BabyApp.Helpers;
 
 namespace BabyApp
 {

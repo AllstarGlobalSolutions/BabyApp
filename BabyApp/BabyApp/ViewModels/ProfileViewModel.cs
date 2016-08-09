@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AGS.Toolkit;
 
-namespace BabyApp
+namespace BabyApp.ViewModels
 {
 	public class ProfileViewModel : ViewModelBase
 	{

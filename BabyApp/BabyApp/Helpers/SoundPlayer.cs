@@ -1,7 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 
-namespace BabyApp
+namespace BabyApp.Helpers
 {
 	public class SoundPlayer
 	{

@@ -19,7 +19,7 @@ namespace BabyApp
 
 		void OnImageTapped( object sender, EventArgs e )
 		{
-			Navigation.PushAsync( new NeedViewPage() );
+			Navigation.PushAsync( new NeedPage() );
 		}
 	}
 }

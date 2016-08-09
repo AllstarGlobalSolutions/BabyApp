@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace BabyApp
 {
-	public partial class DonationViewPage : ContentPage
+	public partial class DonationPage : ContentPage
 	{
-		public DonationViewPage()
+		public DonationPage()
 		{
 			InitializeComponent();
 		}

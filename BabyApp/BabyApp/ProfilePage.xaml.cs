@@ -6,18 +6,20 @@ using System.Runtime.Serialization.Json;
 using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
+using BabyApp.ViewModels;
 
 namespace BabyApp
 {
 	public partial class ProfilePage : ContentPage
 	{
-/*
-		[DataContract]
-		class ImageList
-		{
-			[DataMember( Name = "photos" )]
-			public List<string> Photos = null;
-		}*/
+		/*
+				[DataContract]
+				class ImageList
+				{
+					[DataMember( Name = "photos" )]
+					public List<string> Photos = null;
+				}*/
+
 		public ProfilePage()
 		{
 			InitializeComponent();
@@ -44,26 +46,26 @@ namespace BabyApp
 
 		public async void RegisterUserAsync()
 		{
-/* TODO: TEST
-			HttpClient client = new HttpClient();
-			// The default size of this property is the maximum size of an integer. Therefore, the property is set to a smaller value, as a safeguard,
-			//    in order to limit the amount of data that the application will accept as a response from the web service.
-			client.MaxResponseContentBufferSize = 256000;
+			/* TODO: TEST
+						HttpClient client = new HttpClient();
+						// The default size of this property is the maximum size of an integer. Therefore, the property is set to a smaller value, as a safeguard,
+						//    in order to limit the amount of data that the application will accept as a response from the web service.
+						client.MaxResponseContentBufferSize = 256000;
 
-			Uri uri = new Uri( "http://localhost:61360/Accounts/Register" );
-			string json = JsonConvert.SerializeObject( profileViewModel );
-			StringContent content = new StringContent( json, Encoding.UTF8, "application/json" );
+						Uri uri = new Uri( "http://localhost:61360/Accounts/Register" );
+						string json = JsonConvert.SerializeObject( profileViewModel );
+						StringContent content = new StringContent( json, Encoding.UTF8, "application/json" );
 
-			HttpResponseMessage response = await client.PostAsync( uri, content );
-*/
-//			if ( response.IsSuccessStatusCode )
-//			{
-				// Save Settings locally
-//				SaveSettings();
+						HttpResponseMessage response = await client.PostAsync( uri, content );
+			*/
+			//			if ( response.IsSuccessStatusCode )
+			//			{
+			// Save Settings locally
+			//				SaveSettings();
 
-				// pop this page and go to welcome page
-				await Navigation.PopModalAsync();
-//			}
+			// pop this page and go to welcome page
+			await Navigation.PopModalAsync();
+			//			}
 		}
 
 		public void SaveSettings()

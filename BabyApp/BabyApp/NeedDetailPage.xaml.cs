@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace BabyApp
 {
-	public partial class NeedDetailViewPage : ContentPage
+	public partial class NeedDetailPage : ContentPage
 	{
-		public NeedDetailViewPage()
+		public NeedDetailPage()
 		{
 			InitializeComponent();
 		}
