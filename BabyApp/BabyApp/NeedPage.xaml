@@ -30,6 +30,11 @@
 				<OnPlatform x:TypeArguments="FileImageSource" iOS="save.png" Android="ai-save.png" />
 			</ToolbarItem.Icon>
 		</ToolbarItem>
+		<ToolbarItem Text="Settings" Order="Primary" Clicked="OnToolbarItemClicked">
+			<ToolbarItem.Icon>
+				<OnPlatform x:TypeArguments="FileImageSource" iOS="settings.png" Android="ai-save.png" />
+			</ToolbarItem.Icon>
+		</ToolbarItem>
 		<ToolbarItem Text="Saved Needs" Order="Primary" Clicked="OnToolbarItemClicked">
 			<ToolbarItem.Icon>
 				<OnPlatform x:TypeArguments="FileImageSource" iOS="star.png" Android="ai_important.png" />

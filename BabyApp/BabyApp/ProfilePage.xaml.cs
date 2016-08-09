@@ -62,8 +62,6 @@ namespace BabyApp
 
 		public void SaveSettings()
 		{
-			ProfileViewModel profileViewModel = ( ProfileViewModel )BindingContext;
-
 			Settings.Email = profileViewModel.Email;
 			Settings.Surname = profileViewModel.Surname;
 			Settings.GivenName = profileViewModel.GivenName;
