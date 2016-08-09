@@ -32,7 +32,7 @@
 		</ToolbarItem>
 		<ToolbarItem Text="Settings" Order="Primary" Clicked="OnToolbarItemClicked">
 			<ToolbarItem.Icon>
-				<OnPlatform x:TypeArguments="FileImageSource" iOS="settings.png" Android="ai-save.png" />
+				<OnPlatform x:TypeArguments="FileImageSource" iOS="processing.png" Android="ai-save.png" />
 			</ToolbarItem.Icon>
 		</ToolbarItem>
 		<ToolbarItem Text="Saved Needs" Order="Primary" Clicked="OnToolbarItemClicked">
