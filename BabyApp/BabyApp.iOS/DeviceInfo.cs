@@ -1,6 +1,7 @@
 ﻿using System;
 using UIKit;
 using Xamarin.Forms;
+using BabyApp.Helpers;
 
 [assembly: Dependency( typeof( BabyApp.iOS.DeviceInfo ) )]
 namespace BabyApp.iOS

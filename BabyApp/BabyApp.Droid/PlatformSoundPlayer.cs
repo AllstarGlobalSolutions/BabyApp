@@ -1,6 +1,7 @@
 ﻿using System;
 using Android.Media;
 using Xamarin.Forms;
+using BabyApp.Helpers;
 
 [assembly: Dependency( typeof( BabyApp.Droid.PlatformSoundPlayer ) )]
 namespace BabyApp.Droid

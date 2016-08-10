@@ -5,7 +5,7 @@ using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace BabyApp.Helpers
+namespace BabyApp
 {
 	[ContentProperty( "Source" )]
 	public class ImageResourceExtension : IMarkupExtension

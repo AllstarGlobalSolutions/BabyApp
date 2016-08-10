@@ -1,6 +1,7 @@
 ﻿using System;
 using Android.OS;
 using Xamarin.Forms;
+using BabyApp.Helpers;
 
 [assembly: Dependency( typeof( BabyApp.Droid.DeviceInfo ) )]
 namespace BabyApp.Droid

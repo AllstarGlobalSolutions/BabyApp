@@ -9,6 +9,7 @@ namespace BabyApp.Helpers
 {
 	public class Settings
 	{
+		public const string BASE_URL = "192.168.1.6:3000/api";
 		private const string EMAIL_ADDRESS = "Email";
 		private const string AGE_RANGE = "AgeRange";
 		private const string SURNAME = "Surname";
@@ -17,6 +18,7 @@ namespace BabyApp.Helpers
 		private const string OCCUPATION = "Occupation";
 		private const string SAVED_COUNT = "SavedCount";
 		private const string SAVED = "Saved";
+		private const string ACCESS_TOKEN = "AccessToken";
 
 		private static IDictionary<string, object> properties = Application.Current.Properties;
 
@@ -113,6 +115,24 @@ namespace BabyApp.Helpers
 			set
 			{
 				properties[ OCCUPATION ] = value;
+			}
+		}
+
+		public static string AccessToken
+		{
+			get
+			{
+				if ( properties.ContainsKey( ACCESS_TOKEN ) )
+				{
+					return ( string )properties[ ACCESS_TOKEN ];
+				}
+
+				return null;
+			}
+
+			set
+			{
+				properties[ ACCESS_TOKEN ] = value;
 			}
 		}
 

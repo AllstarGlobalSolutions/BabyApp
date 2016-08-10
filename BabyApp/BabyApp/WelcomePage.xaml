@@ -1,14 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-				 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-				 xmlns:local="clr-namespace:BabyApp"
-				 x:Class="BabyApp.WelcomePage" BackgroundColor="Accent">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:BabyApp" x:Class="BabyApp.WelcomePage" BackgroundColor="Accent">
 	<ContentPage.Content>
 		<StackLayout BackgroundColor="Accent" VerticalOptions="Center" HorizontalOptions="Center">
 			<StackLayout.Children>
-				<Image Source="{local:ImageResource BabyApp.Images.button-up.png}">
+				<Image Source="{local:ImageResource BabyApp.Images.button-up.png}" VerticalOptions="CenterAndExpand" HorizontalOptions="Center">
 					<Image.GestureRecognizers>
-						<TapGestureRecognizer Tapped="OnImageTapped"/>
+						<TapGestureRecognizer Tapped="OnImageTapped" />
 					</Image.GestureRecognizers>
 				</Image>
 			</StackLayout.Children>

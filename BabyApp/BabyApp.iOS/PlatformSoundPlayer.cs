@@ -4,6 +4,7 @@ using System.Text;
 using Xamarin.Forms;
 using AVFoundation;
 using Foundation;
+using BabyApp.Helpers;
 
 [assembly: Dependency( typeof( BabyApp.iOS.PlatformSoundPlayer ) )]
 namespace BabyApp.iOS

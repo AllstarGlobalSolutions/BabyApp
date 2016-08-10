@@ -7,6 +7,8 @@ using System.Xml.Serialization;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.IO;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using BabyApp.Helpers;
 
 namespace BabyApp
@@ -33,9 +35,8 @@ namespace BabyApp
 			public string ClickUrl = null;
 		}
 
-		private const string BASE_URL = "192.168.1.6:61360/api";
-		private string NEXT_NEED_URL = BASE_URL + "/Needs/Next/";
-		private string NEXT_AD_URL = BASE_URL + "/Advertisements/Next/";
+		private string NEXT_NEED_URL = Settings.BASE_URL + "/Needs/Next/";
+		private string NEXT_AD_URL = Settings.BASE_URL + "/Advertisements/Next/";
 
 		private NeedViewModel NeedViewModel { get; set; }
 		private AdViewModel AdViewModel { get; set; }
@@ -50,48 +51,46 @@ namespace BabyApp
 			NeedViewModel = new NeedViewModel();
 			AdViewModel = new AdViewModel();
 			BindingContext = NeedViewModel;
-			GetNextNeed();
-			GetNextAd();
+			GetNextNeedAsync();
+			GetNextAdAsync();
 		}
 
-		protected void GetNextNeed()
+		protected async void GetNextNeedAsync()
 		{
-			Uri uri = new Uri( NEXT_NEED_URL + Settings.Email );
-			needRequest = WebRequest.Create( uri );
-			needRequest.BeginGetResponse( NeedResponseCallback, null );
-		}
-
-		void NeedResponseCallback( IAsyncResult result )
-		{
-			Device.BeginInvokeOnMainThread( () =>
+			using ( var client = new HttpClient() )
 			{
-				Stream stream = needRequest.EndGetResponse( result ).GetResponseStream();
+				client.BaseAddress = new Uri( Settings.BASE_URL );
+				client.DefaultRequestHeaders.Accept.Clear();
+				client.DefaultRequestHeaders.Accept.Add( new MediaTypeWithQualityHeaderValue( "application/json" ) );
 
-				// Deserialize the JSON into imageList;
-				var jsonSerializer = new DataContractJsonSerializer( typeof( Need ) );
-				need = ( Need )jsonSerializer.ReadObject( stream );
-				needImage.Source = ImageSource.FromUri( new Uri( need.ImageUrl ) );
-			} );
+				HttpResponseMessage response = await client.GetAsync( "/Needs/Next/" + Settings.Email );
+
+				if ( response.IsSuccessStatusCode )
+				{
+					var serializer = new DataContractJsonSerializer( typeof( Need ) );
+					need = ( Need )serializer.ReadObject( await response.Content.ReadAsStreamAsync() );
+					needImage.Source = ImageSource.FromUri( new Uri( Settings.BASE_URL + need.ImageUrl ) );
+				}
+			}
 		}
 
-		protected void GetNextAd()
+		protected async void GetNextAdAsync()
 		{
-			Uri uri = new Uri( NEXT_AD_URL + Settings.Email );
-			adRequest = WebRequest.Create( uri );
-			adRequest.BeginGetResponse( AdResponseCallback, null );
-		}
-
-		void AdResponseCallback( IAsyncResult result )
-		{
-			Device.BeginInvokeOnMainThread( () =>
+			using ( var client = new HttpClient() )
 			{
-				Stream stream = needRequest.EndGetResponse( result ).GetResponseStream();
+				client.BaseAddress = new Uri( Settings.BASE_URL );
+				client.DefaultRequestHeaders.Accept.Clear();
+				client.DefaultRequestHeaders.Accept.Add( new MediaTypeWithQualityHeaderValue( "application/json" ) );
 
-				// Deserialize the JSON into imageList;
-				var jsonSerializer = new DataContractJsonSerializer( typeof( Ad ) );
-				ad = ( Ad )jsonSerializer.ReadObject( stream );
-				adImage.Source = ImageSource.FromUri( new Uri( ad.ImageUrl ) );
-			} );
+				HttpResponseMessage response = await client.GetAsync( "/Advertisements/Next/" + Settings.Email );
+
+				if ( response.IsSuccessStatusCode )
+				{
+					var serializer = new DataContractJsonSerializer( typeof( Ad ) );
+					ad = ( Ad )serializer.ReadObject( await response.Content.ReadAsStreamAsync() );
+					adImage.Source = ImageSource.FromUri( new Uri( Settings.BASE_URL + ad.ImageUrl ) );
+				}
+			}
 		}
 
 		public void OnImagePropertyChanged( object sender, PropertyChangedEventArgs args )

@@ -1,7 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using BabyApp.Helpers;
-
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using Xamarin.Forms;
 
 namespace BabyApp
@@ -15,6 +16,10 @@ namespace BabyApp
 			if ( String.IsNullOrEmpty( Settings.Email ) )
 			{
 				Navigation.PushModalAsync( new ProfilePage() );
+			}
+			else
+			{
+				( ( App )Application.Current ).LoginAsync();
 			}
 		}
 
