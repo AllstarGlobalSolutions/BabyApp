@@ -4,6 +4,7 @@
 		<StackLayout.Padding>
 			<OnPlatform x:TypeArguments="Thickness" iOS="0,20,0,0" />
 		</StackLayout.Padding>
+		<Label x:Name="ErrorLabel" BackgroundColor="White" TextColor="Red" IsVisible="false" />
 		<TableView x:Name="tableView" Intent="Form" BackgroundColor="Accent">
 			<TableRoot Title="Profile Data">
 				<TableSection Title="Required">
