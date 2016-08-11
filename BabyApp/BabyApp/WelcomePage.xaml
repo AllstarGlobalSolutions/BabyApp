@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:BabyApp" x:Class="BabyApp.WelcomePage" BackgroundColor="Accent">
 	<ContentPage.Content>
-		<StackLayout BackgroundColor="Accent" VerticalOptions="Center" HorizontalOptions="Center">
+		<StackLayout BackgroundColor="#3498DB" VerticalOptions="Center" HorizontalOptions="Center">
 			<StackLayout.Children>
+				<Label x:Name="ErrorLabel" BackgroundColor="White" TextColor="Red" IsVisible="False" />
 				<Image Source="{local:ImageResource BabyApp.Images.button-up.png}" VerticalOptions="CenterAndExpand" HorizontalOptions="Center">
 					<Image.GestureRecognizers>
 						<TapGestureRecognizer Tapped="OnImageTapped" />

@@ -1,13 +1,12 @@
 ﻿using System;
-using System.IO;
 using Xamarin.Forms;
 using AGS.Toolkit;
 using BabyApp.ViewModels;
 using BabyApp.Helpers;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
+using Newtonsoft.Json;
 
 namespace BabyApp
 {
@@ -16,20 +15,27 @@ namespace BabyApp
 		public ProfileViewModel ProfileViewModel { get; private set; }
 		public string AccessToken { get; set; }
 
-		[DataContract]
+		[JsonObject( MemberSerialization.OptIn )]
 		class LoginModel
 		{
+			[JsonProperty]
 			public string grant_type { get; set; }
+			[JsonProperty]
 			public string username { get; set; }
+			[JsonProperty]
 			public string password { get; set; }
 		}
 
-		[DataContract]
+		[JsonObject( MemberSerialization.OptIn )]
 		class LoginResponse
 		{
+			[JsonProperty]
 			public string access_token { get; set; }
+			[JsonProperty]
 			public string token_type { get; set; }
+			[JsonProperty]
 			public int expires_in { get; set; }
+			[JsonProperty]
 			public string userName { get; set; }
 		}
 
@@ -37,30 +43,42 @@ namespace BabyApp
 		{
 			Toolkit.Init();
 			ProfileViewModel = new ProfileViewModel();
+			NavigationPage navPage = new NavigationPage( new WelcomePage() );
+			navPage.BackgroundColor = Color.FromRgb( 0x34, 0x98, 0xDB );
 
-			MainPage = new NavigationPage( new WelcomePage() );
+			MainPage = navPage;
 		}
 
-		public async void LoginAsync()
+		public string LoginError = null;
+
+		public async void Login()
 		{
 			using ( var client = new HttpClient() )
 			{
-				client.BaseAddress = new Uri( Settings.BASE_URL );
-				client.DefaultRequestHeaders.Accept.Clear();
-				client.DefaultRequestHeaders.Accept.Add( new MediaTypeWithQualityHeaderValue( "application/x-www-form-urlecoded" ) );
-
-				LoginModel lm = new LoginModel { username = Settings.Email, password = "Password@123" };
-				var ms = new MemoryStream();
-				var serializer = new DataContractJsonSerializer( typeof( LoginModel ) );
-				serializer.WriteObject( ms, lm );
-				HttpContent content = new StreamContent( ms );
-				HttpResponseMessage response = await client.PostAsync( "/token", content );
-
-				if ( response.IsSuccessStatusCode )
+				try
 				{
-					var data = ( LoginResponse )serializer.ReadObject( await response.Content.ReadAsStreamAsync() );
-					( ( App )Application.Current ).AccessToken = data.access_token;
-					Settings.AccessToken = data.access_token;
+					client.DefaultRequestHeaders.Accept.Clear();
+					client.DefaultRequestHeaders.Accept.Add( new MediaTypeWithQualityHeaderValue( "application/json" ) );
+
+					string loginString = "grant_type=password&username=\"" + Settings.Email + "\"&password=\"Password@123\"";
+					HttpContent content = new StringContent( loginString, Encoding.UTF8, "application/x-www-form-urlencoded" );
+					HttpResponseMessage response = await client.PostAsync( "/token", content );
+
+					if ( response.IsSuccessStatusCode )
+					{
+						var data = ( LoginResponse )JsonConvert.DeserializeObject( await response.Content.ReadAsStringAsync() );
+						( ( App )Application.Current ).AccessToken = data.access_token;
+						Settings.AccessToken = data.access_token;
+						LoginError = null;
+					}
+					else
+					{
+						LoginError = response.ReasonPhrase;
+					}
+				}
+				catch ( Exception e )
+				{
+					LoginError = e.Message;
 				}
 			}
 		}

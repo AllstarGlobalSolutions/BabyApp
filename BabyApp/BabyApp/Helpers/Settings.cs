@@ -9,7 +9,11 @@ namespace BabyApp.Helpers
 {
 	public class Settings
 	{
-		public const string BASE_URL = "192.168.1.6:3000/api";
+		public const string REGISTER_URL = "http://192.168.1.6:3000/api/Account/Register";
+		public const string LOGIN_URL = "http://192.168.1.6:3000/Token";
+		public const string NEXT_NEED_URL = "http://192.168.1.6:3000/api/Needs/Next/";
+		public const string NEXT_AD_URL = "http://192.168.1.6:3000/api/Advertiserments/Next/";
+		public const string IMAGE_URL = "http://192.168.1.6:3000/api/File/";
 		private const string EMAIL_ADDRESS = "Email";
 		private const string AGE_RANGE = "AgeRange";
 		private const string SURNAME = "Surname";

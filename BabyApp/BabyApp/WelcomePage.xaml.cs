@@ -19,7 +19,14 @@ namespace BabyApp
 			}
 			else
 			{
-				( ( App )Application.Current ).LoginAsync();
+				App app = ( ( App )Application.Current );
+				app.Login();
+
+				if ( app.LoginError != null )
+				{
+					ErrorLabel.Text = app.LoginError;
+					ErrorLabel.IsVisible = true;
+				}
 			}
 		}
 

@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:toolkit="clr-namespace:AGS.Toolkit;assembly=AGS.Toolkit" xmlns:local="clr-namespace:BabyApp" x:Class="BabyApp.ProfilePage" BackgroundColor="Accent">
-	<StackLayout BackgroundColor="Accent">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:toolkit="clr-namespace:AGS.Toolkit;assembly=AGS.Toolkit" xmlns:local="clr-namespace:BabyApp" x:Class="BabyApp.ProfilePage" BackgroundColor="#3498DB">
+	<StackLayout BackgroundColor="#3498DB">
 		<StackLayout.Padding>
 			<OnPlatform x:TypeArguments="Thickness" iOS="0,20,0,0" />
 		</StackLayout.Padding>
 		<Label x:Name="ErrorLabel" BackgroundColor="White" TextColor="Red" IsVisible="false" />
-		<TableView x:Name="tableView" Intent="Form" BackgroundColor="Accent">
+		<TableView x:Name="tableView" Intent="Form" BackgroundColor="#3498DB">
 			<TableRoot Title="Profile Data">
 				<TableSection Title="Required">
 					<EntryCell Label="Email" Text="{Binding Email}" Placeholder="Email Address" Keyboard="Email" />
