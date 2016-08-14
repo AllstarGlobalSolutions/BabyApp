@@ -9,11 +9,12 @@ namespace BabyApp.Helpers
 {
 	public class Settings
 	{
-		public const string REGISTER_URL = "http://192.168.1.6:3000/api/Account/Register";
-		public const string LOGIN_URL = "http://192.168.1.6:3000/Token";
-		public const string NEXT_NEED_URL = "http://192.168.1.6:3000/api/Needs/Next/";
-		public const string NEXT_AD_URL = "http://192.168.1.6:3000/api/Advertiserments/Next/";
-		public const string IMAGE_URL = "http://192.168.1.6:3000/api/File/";
+		public const string REGISTER_URL = @"http://192.168.1.6:3000/api/Account/Register/{0}";
+		public const string LOGIN_URL = @"http://192.168.1.6:3000/Token";
+		public const string NEXT_NEED_URL = @"http://192.168.1.6:3000/api/Needs/Next/{0}";
+		public const string NEXT_AD_URL = @"http://192.168.1.6:3000/api/Advertiserments/Next/{0}";
+		public const string IMAGE_URL = @"http://192.168.1.6:3000/api/Files/{0}";
+		private const string USER_ID = "UserId";
 		private const string EMAIL_ADDRESS = "Email";
 		private const string AGE_RANGE = "AgeRange";
 		private const string SURNAME = "Surname";
@@ -25,6 +26,22 @@ namespace BabyApp.Helpers
 		private const string ACCESS_TOKEN = "AccessToken";
 
 		private static IDictionary<string, object> properties = Application.Current.Properties;
+
+		public static string UserId
+		{
+			get
+			{
+				if ( properties.ContainsKey( USER_ID ) )
+				{
+					return ( string )properties[ USER_ID ];
+				}
+				return null;
+			}
+			set
+			{
+				properties[ USER_ID ] = value;
+			}
+		}
 
 		public static string Email
 		{

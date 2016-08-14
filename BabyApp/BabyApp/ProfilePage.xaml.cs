@@ -6,6 +6,7 @@ using BabyApp.ViewModels;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
+using System.IO;
 
 namespace BabyApp
 {
@@ -61,6 +62,7 @@ namespace BabyApp
 				{
 					client.DefaultRequestHeaders.Clear();
 					client.DefaultRequestHeaders.Accept.Add( new MediaTypeWithQualityHeaderValue( "application/json" ) );
+
 					RegisterModel rm = new RegisterModel
 					{
 						Email = profileViewModel.Email,
@@ -71,17 +73,39 @@ namespace BabyApp
 					};
 
 					HttpContent content = new StringContent( JsonConvert.SerializeObject( rm ), Encoding.UTF8, "application/json" );
-					HttpResponseMessage response = await client.PostAsync( Settings.REGISTER_URL, content );
+					Uri uri = new Uri( String.Format( Settings.REGISTER_URL, Settings.Email ), UriKind.Absolute );
+					HttpResponseMessage response = await client.PostAsync( uri, content );
 
 					if ( response.IsSuccessStatusCode )
 					{
+						profileViewModel.UserId = await response.Content.ReadAsStringAsync();
 						SaveSettings();
-						Navigation.PopModalAsync();
+						App app = ( ( App )Application.Current );
+
+						if ( !( await app.LoginAsync() ) )
+						{
+							ErrorLabel.Text = app.LoginError;
+							ErrorLabel.IsVisible = true;
+						}
+						else
+						{
+							await Navigation.PopModalAsync();
+						}
 					}
 					else
 					{
-						ErrorLabel.Text = response.ReasonPhrase;
-						ErrorLabel.IsVisible = true;
+						StreamContent sc = response.Content as StreamContent;
+						string json = await sc.ReadAsStringAsync();
+						if ( json.Contains( "already taken" ) )
+						{
+							ErrorLabel.Text = "Email already in use";
+							ErrorLabel.IsVisible = true;
+						}
+						else
+						{
+							ErrorLabel.Text = "Unknown Error.  Try again Later.";
+							ErrorLabel.IsVisible = true;
+						}
 					}
 				}
 				catch ( Exception e )
@@ -94,6 +118,7 @@ namespace BabyApp
 
 		void SaveSettings()
 		{
+			Settings.UserId = profileViewModel.UserId;
 			Settings.Email = profileViewModel.Email;
 			Settings.Surname = profileViewModel.Surname;
 			Settings.GivenName = profileViewModel.GivenName;

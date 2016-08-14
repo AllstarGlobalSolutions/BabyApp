@@ -13,20 +13,24 @@ namespace BabyApp
 		{
 			InitializeComponent();
 
-			if ( String.IsNullOrEmpty( Settings.Email ) )
+			if ( String.IsNullOrEmpty( Settings.UserId ) )
 			{
 				Navigation.PushModalAsync( new ProfilePage() );
 			}
 			else
 			{
-				App app = ( ( App )Application.Current );
-				app.Login();
+				Login();
+			}
+		}
 
-				if ( app.LoginError != null )
-				{
-					ErrorLabel.Text = app.LoginError;
-					ErrorLabel.IsVisible = true;
-				}
+		public async void Login()
+		{
+			App app = ( ( App )Application.Current );
+
+			if ( !( await app.LoginAsync() ) )
+			{
+				ErrorLabel.Text = app.LoginError;
+				ErrorLabel.IsVisible = true;
 			}
 		}
 

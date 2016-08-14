@@ -2,10 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BabyApp.NeedDetailPage" BackgroundColor="Accent">
 	<ContentPage.Content>
 		<StackLayout>
-			<Label HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-			<Image HorizontalOptions="Center" HeightRequest="100" />
+			<Image x:Name="image" HorizontalOptions="Center" HeightRequest="200" />
 			<ScrollView>
-				<Label x:Name="story" />
+				<Label x:Name="storyLabel" />
 			</ScrollView>
 		</StackLayout>
 	</ContentPage.Content>

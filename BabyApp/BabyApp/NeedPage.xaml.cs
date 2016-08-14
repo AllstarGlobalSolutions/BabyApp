@@ -4,68 +4,88 @@ using System.ComponentModel;
 using Xamarin.Forms;
 using BabyApp.ViewModels;
 using System.Xml.Serialization;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using BabyApp.Helpers;
+using Newtonsoft.Json;
 
 namespace BabyApp
 {
 	public partial class NeedPage : ContentPage
 	{
-		[DataContract]
-		class Need
+		class NeedResponse
 		{
-			public Guid NeedId = Guid.Empty;
-			public string NeedType = null;
-			public decimal AmountNeeded;
-			public string OrganiztionName = null;
-			public string OrganizationInfo = null;
-			public string ImageUrl = null;
-			public string Caption = null;
-			public string Story = null;
+			public Guid NeedId { get; set; }
+			public string Caption { get; set; }
+			public string Story { get; set; }
+			public Guid? FileId1 { get; set; }
+			public Guid? FileId2 { get; set; }
+			public string OrgName { get; set; }
+			public string NeedType { get; set; }
+			public string Tags { get; set; }
+			public decimal? AmountNeeded { get; set; }
 		}
 
-		[DataContract]
-		class Ad
+		class AdResponse
 		{
-			public string ImageUrl = null;
-			public string ClickUrl = null;
+			public string FileId { get; set; }
+			public string ClickUrl { get; set; }
 		}
 
-		private NeedViewModel NeedViewModel { get; set; }
+		private NeedViewModel nvm { get; set; }
 		private AdViewModel AdViewModel { get; set; }
-		private WebRequest needRequest;
-		private WebRequest adRequest;
-		private Need need;
-		private Ad ad;
+		private NeedResponse need;
+		private AdResponse ad;
 
 		public NeedPage()
 		{
 			InitializeComponent();
-			NeedViewModel = new NeedViewModel();
+			nvm = new NeedViewModel();
 			AdViewModel = new AdViewModel();
-			BindingContext = NeedViewModel;
+			BindingContext = nvm;
 			GetNextNeedAsync();
-			GetNextAdAsync();
+			//GetNextAdAsync();
 		}
 
 		protected async void GetNextNeedAsync()
 		{
 			using ( var client = new HttpClient() )
 			{
-				client.DefaultRequestHeaders.Accept.Clear();
-				client.DefaultRequestHeaders.Accept.Add( new MediaTypeWithQualityHeaderValue( "application/json" ) );
-
-				HttpResponseMessage response = await client.GetAsync( Settings.NEXT_NEED_URL + Settings.Email );
-
-				if ( response.IsSuccessStatusCode )
+				try
 				{
-					var serializer = new DataContractJsonSerializer( typeof( Need ) );
-					need = ( Need )serializer.ReadObject( await response.Content.ReadAsStreamAsync() );
-					needImage.Source = ImageSource.FromUri( new Uri( Settings.IMAGE_URL + need.ImageUrl ) );
+					client.DefaultRequestHeaders.Accept.Clear();
+					client.DefaultRequestHeaders.Accept.Add( new MediaTypeWithQualityHeaderValue( "application/json" ) );
+					client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue( "Bearer", Settings.AccessToken );
+
+					Uri uri = new Uri( String.Format( Settings.NEXT_NEED_URL, Settings.UserId ), UriKind.Absolute );
+					HttpResponseMessage response = await client.GetAsync( uri );
+
+					if ( response.IsSuccessStatusCode )
+					{
+						need = JsonConvert.DeserializeObject<NeedResponse>( await response.Content.ReadAsStringAsync() );
+						nvm.Caption = need.Caption;
+						nvm.Story = need.Story;
+
+						string file1Id = need.FileId1.HasValue ? need.FileId1.ToString() : "";
+						nvm.Image1Url = String.Format( Settings.IMAGE_URL, file1Id );
+
+						string file2Id = need.FileId2.HasValue ? need.FileId2.ToString() : file1Id;
+						nvm.Image2Url = String.Format( Settings.IMAGE_URL, file2Id );
+
+						Uri imageUri = new Uri( nvm.Image1Url, UriKind.Absolute );
+						needImage.Source = ImageSource.FromUri( imageUri );
+					}
+					else
+					{
+						var m = await response.Content.ReadAsStringAsync();
+						nvm.Caption = m;
+					}
+				}
+				catch ( Exception e )
+				{
+					var m = e.Message;
+					nvm.Caption = m;
 				}
 			}
 		}
@@ -74,16 +94,28 @@ namespace BabyApp
 		{
 			using ( var client = new HttpClient() )
 			{
-				client.DefaultRequestHeaders.Accept.Clear();
-				client.DefaultRequestHeaders.Accept.Add( new MediaTypeWithQualityHeaderValue( "application/json" ) );
-
-				HttpResponseMessage response = await client.GetAsync( Settings.NEXT_AD_URL + Settings.Email );
-
-				if ( response.IsSuccessStatusCode )
+				try
 				{
-					var serializer = new DataContractJsonSerializer( typeof( Ad ) );
-					ad = ( Ad )serializer.ReadObject( await response.Content.ReadAsStreamAsync() );
-					adImage.Source = ImageSource.FromUri( new Uri( Settings.IMAGE_URL + ad.ImageUrl ) );
+					client.DefaultRequestHeaders.Accept.Clear();
+					client.DefaultRequestHeaders.Accept.Add( new MediaTypeWithQualityHeaderValue( "application/json" ) );
+
+					Uri uri = new Uri( String.Format( Settings.NEXT_AD_URL, Settings.Email ), UriKind.Absolute );
+					HttpResponseMessage response = await client.GetAsync( uri );
+
+					if ( response.IsSuccessStatusCode )
+					{
+						ad = JsonConvert.DeserializeObject<AdResponse>( await response.Content.ReadAsStringAsync() );
+						adImage.Source = ImageSource.FromUri( new Uri( String.Format( Settings.IMAGE_URL, ad.FileId.ToString() ), UriKind.Absolute ) );
+					}
+					else
+					{
+						// TODO: need to report error
+						var m = response.RequestMessage;
+					}
+				}
+				catch ( Exception e )
+				{
+					var m = e.Message;
 				}
 			}
 		}
@@ -102,28 +134,29 @@ namespace BabyApp
 
 			switch ( toolbarItem.Text )
 			{
-				case "Details":
-					Navigation.PushAsync( new NeedDetailPage() );
-					break;
+			case "Details":
+				NeedDetailPage detailPage = new NeedDetailPage( nvm.Story, nvm.Image2Url );
+				Navigation.PushAsync( detailPage );
+				break;
 
-				case "Org Info":
-					Navigation.PushAsync( new OrganizationPage() );
-					break;
+			case "Org Info":
+				Navigation.PushAsync( new OrganizationPage() );
+				break;
 
-				case "Share":
-					throw new NotImplementedException();
+			case "Share":
+				throw new NotImplementedException();
 
-				case "Donate":
-					Navigation.PushAsync( new DonationPage() );
-					break;
+			case "Donate":
+				Navigation.PushAsync( new DonationPage() );
+				break;
 
-				case "Save":
-					SaveNeed();
-					break;
+			case "Save":
+				SaveNeed();
+				break;
 
-				case "Saved Needs":
-					Navigation.PushAsync( new SavedNeedsPage() );
-					break;
+			case "Saved Needs":
+				Navigation.PushAsync( new SavedNeedsPage() );
+				break;
 			}
 		}
 
@@ -135,7 +168,7 @@ namespace BabyApp
 
 				using ( StringWriter writer = new StringWriter() )
 				{
-					serializer.Serialize( writer, this.NeedViewModel );
+					serializer.Serialize( writer, this.nvm );
 					Settings.SaveNextNeed( writer.GetStringBuilder().ToString() );
 				}
 				//TODO: show a "successfully saved" box
@@ -152,7 +185,7 @@ namespace BabyApp
 
 			using ( StringReader stringReader = new StringReader( Settings.GetSavedNeedAsString( index ) ) )
 			{
-				NeedViewModel = ( NeedViewModel )serializer.Deserialize( stringReader );
+				nvm = ( NeedViewModel )serializer.Deserialize( stringReader );
 			}
 
 			// Load Need into page

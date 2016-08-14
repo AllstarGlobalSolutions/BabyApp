@@ -9,8 +9,14 @@ namespace BabyApp.ViewModels
 {
 	public class ProfileViewModel : ViewModelBase
 	{
-		string surname, givenName, email, phone, occupation, gender, ageRange;
+		string userId, surname, givenName, email, phone, occupation, gender, ageRange;
 		bool isValid;
+
+		public string UserId
+		{
+			get { return userId; }
+			set { SetProperty( ref userId, value ); }
+		}
 
 		public string Surname
 		{

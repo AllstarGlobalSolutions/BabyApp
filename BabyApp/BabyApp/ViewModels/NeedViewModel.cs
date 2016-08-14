@@ -6,7 +6,7 @@ namespace BabyApp.ViewModels
 	public class NeedViewModel : ViewModelBase
 	{
 		//		Guid needId, organizationId;
-		string caption, story, imageUrl, city, country, region, organizationName, organizationInfo, needType, tags;
+		string caption, story, image1Url, image2Url, city, country, region, organizationName, organizationInfo, needType, tags;
 		decimal needAmount;
 
 		public string Caption
@@ -21,10 +21,16 @@ namespace BabyApp.ViewModels
 			set { SetProperty( ref story, value ); }
 		}
 
-		public string ImageUrl
+		public string Image1Url
 		{
-			get { return imageUrl; }
-			set { SetProperty( ref imageUrl, value ); }
+			get { return image1Url; }
+			set { SetProperty( ref image1Url, value ); }
+		}
+
+		public string Image2Url
+		{
+			get { return image2Url; }
+			set { SetProperty( ref image2Url, value ); }
 		}
 
 		public decimal NeedAmount

@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BabyApp.NeedPage" BackgroundColor="Accent">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BabyApp.NeedPage" BackgroundColor="#3498DB">
 	<ContentPage.Content>
-		<StackLayout>
+		<StackLayout BackgroundColor="#3498DB">
 			<ActivityIndicator x:Name="activityIndicator">
 			</ActivityIndicator>
 			<Image x:Name="adImage" HeightRequest="40" HorizontalOptions="Center" />
 			<Image x:Name="needImage" HorizontalOptions="Center" VerticalOptions="FillAndExpand" PropertyChanged="OnImagePropertyChanged" />
-			<Label x:Name="Caption" Text="Hello" HorizontalOptions="Center" />
+			<Label x:Name="Caption" Text="{Binding Caption}" HorizontalOptions="Center" />
 		</StackLayout>
 	</ContentPage.Content>
 	<ContentPage.ToolbarItems>
@@ -15,16 +15,19 @@
 				<OnPlatform x:TypeArguments="FileImageSource" iOS="glasses.png" Android="ai_read.png" />
 			</ToolbarItem.Icon>
 		</ToolbarItem>
+		<!--
 		<ToolbarItem Text="Org Info" Order="Primary" Clicked="OnToolbarItemClicked">
 			<ToolbarItem.Icon>
 				<OnPlatform x:TypeArguments="FileImageSource" iOS="addressbook.png" Android="ai-about.png" />
 			</ToolbarItem.Icon>
 		</ToolbarItem>
+
 		<ToolbarItem Text="Donate" Order="Primary" Clicked="OnToolbarItemClicked">
 			<ToolbarItem.Icon>
 				<OnPlatform x:TypeArguments="FileImageSource" iOS="dollar.png" Android="ic_action_refresh.png" />
 			</ToolbarItem.Icon>
 		</ToolbarItem>
+		-->
 		<ToolbarItem Text="Save" Order="Primary" Clicked="OnToolbarItemClicked">
 			<ToolbarItem.Icon>
 				<OnPlatform x:TypeArguments="FileImageSource" iOS="save.png" Android="ai-save.png" />

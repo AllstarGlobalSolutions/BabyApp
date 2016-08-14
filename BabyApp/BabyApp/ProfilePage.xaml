@@ -20,7 +20,7 @@
 						<x:String>Male</x:String>
 						<x:String>Female</x:String>
 					</toolkit:PickerCell>
-					<toolkit:PickerCell Label="Age Range:" Title="Age Range" SelectedValue="{Binding AgeRange}">
+					<toolkit:PickerCell Label="Age Range:" Title="Age Range" SelectedValue="{Binding AgeRange}" BackgroundColor="#3498DB">
 						<x:String>10 - 19</x:String>
 						<x:String>20 - 29</x:String>
 						<x:String>30 - 39</x:String>

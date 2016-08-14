@@ -26,6 +26,8 @@ namespace AGS.Toolkit
 												pickerCell.Items.IndexOf( ( string )newValue );
 											}
 										} );
+		public static readonly BindableProperty BackgroundColorProperty = BindableProperty.Create( "BackgroundColor", typeof( Color ), typeof( PickerCell ), Color.Default );
+
 		public PickerCell()
 		{
 			InitializeComponent();
@@ -37,7 +39,7 @@ namespace AGS.Toolkit
 			get { return ( string )GetValue( LabelProperty ); }
 		}
 
-		 public string Title
+		public string Title
 		{
 			get { return ( string )GetValue( TitleProperty ); }
 			set { SetValue( TitleProperty, value ); }
@@ -47,6 +49,12 @@ namespace AGS.Toolkit
 		{
 			get { return ( string )GetValue( SelectedValueProperty ); }
 			set { SetValue( SelectedValueProperty, value ); }
+		}
+
+		public Color BackgroundColor
+		{
+			get { return ( Color )GetValue( BackgroundColorProperty ); }
+			set { SetValue( BackgroundColorProperty, value ); }
 		}
 
 		// Items property.
