@@ -5,9 +5,15 @@ namespace BabyApp.ViewModels
 {
 	public class NeedViewModel : ViewModelBase
 	{
-		//		Guid needId, organizationId;
+		Guid needId; //, organizationId;
 		string caption, story, image1Url, image2Url, city, country, region, organizationName, organizationInfo, needType, tags;
 		decimal needAmount;
+
+		public Guid NeedId
+		{
+			get { return needId; }
+			set { SetProperty( ref needId, value ); }
+		}
 
 		public string Caption
 		{

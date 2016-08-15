@@ -29,7 +29,7 @@ namespace BabyApp
 
 		class AdResponse
 		{
-			public string FileId { get; set; }
+			public Guid? ImageId { get; set; }
 			public string ClickUrl { get; set; }
 		}
 
@@ -37,6 +37,8 @@ namespace BabyApp
 		private AdViewModel AdViewModel { get; set; }
 		private NeedResponse need;
 		private AdResponse ad;
+		private Uri adUri;
+		private DateTime viewNeedStart;
 
 		public NeedPage()
 		{
@@ -44,8 +46,9 @@ namespace BabyApp
 			nvm = new NeedViewModel();
 			AdViewModel = new AdViewModel();
 			BindingContext = nvm;
+
 			GetNextNeedAsync();
-			//GetNextAdAsync();
+			GetNextAdAsync();
 		}
 
 		protected async void GetNextNeedAsync()
@@ -63,9 +66,11 @@ namespace BabyApp
 
 					if ( response.IsSuccessStatusCode )
 					{
+						viewNeedStart = DateTime.UtcNow;
 						need = JsonConvert.DeserializeObject<NeedResponse>( await response.Content.ReadAsStringAsync() );
 						nvm.Caption = need.Caption;
 						nvm.Story = need.Story;
+						nvm.NeedId = need.NeedId;
 
 						string file1Id = need.FileId1.HasValue ? need.FileId1.ToString() : "";
 						nvm.Image1Url = String.Format( Settings.IMAGE_URL, file1Id );
@@ -98,14 +103,19 @@ namespace BabyApp
 				{
 					client.DefaultRequestHeaders.Accept.Clear();
 					client.DefaultRequestHeaders.Accept.Add( new MediaTypeWithQualityHeaderValue( "application/json" ) );
+					client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue( "Bearer", Settings.AccessToken );
 
-					Uri uri = new Uri( String.Format( Settings.NEXT_AD_URL, Settings.Email ), UriKind.Absolute );
+					Uri uri = new Uri( String.Format( Settings.NEXT_AD_URL, Settings.UserId ), UriKind.Absolute );
 					HttpResponseMessage response = await client.GetAsync( uri );
 
 					if ( response.IsSuccessStatusCode )
 					{
 						ad = JsonConvert.DeserializeObject<AdResponse>( await response.Content.ReadAsStringAsync() );
-						adImage.Source = ImageSource.FromUri( new Uri( String.Format( Settings.IMAGE_URL, ad.FileId.ToString() ), UriKind.Absolute ) );
+
+						string fileId = ad.ImageId.HasValue ? ad.ImageId.ToString() : "";
+						Uri imageUri = new Uri( String.Format( Settings.NEXT_AD_URL, fileId ), UriKind.Absolute );
+						adImage.Source = ImageSource.FromUri( imageUri );
+						adUri = new Uri( ad.ClickUrl );
 					}
 					else
 					{
@@ -128,6 +138,20 @@ namespace BabyApp
 			}
 		}
 
+		public void OnAdImageTapped( object sender, EventArgs args )
+		{
+			if ( adUri != null )
+			{
+				Device.OpenUri( adUri );
+			}
+		}
+
+		protected override bool OnBackButtonPressed()
+		{
+			SaveActivity();
+			return base.OnBackButtonPressed();
+		}
+
 		public void OnToolbarItemClicked( object sender, EventArgs args )
 		{
 			ToolbarItem toolbarItem = ( ToolbarItem )sender;
@@ -135,7 +159,7 @@ namespace BabyApp
 			switch ( toolbarItem.Text )
 			{
 			case "Details":
-				NeedDetailPage detailPage = new NeedDetailPage( nvm.Story, nvm.Image2Url );
+				NeedDetailPage detailPage = new NeedDetailPage( nvm.NeedId, nvm.Story, nvm.Image2Url );
 				Navigation.PushAsync( detailPage );
 				break;
 
@@ -158,6 +182,21 @@ namespace BabyApp
 				Navigation.PushAsync( new SavedNeedsPage() );
 				break;
 			}
+		}
+
+		protected void SaveActivity()
+		{
+			ActivityModel am = new ActivityModel
+			{
+				NeedId = nvm.NeedId,
+				UserId = Guid.Parse( Settings.UserId ),
+				StartDttmUTC = this.viewNeedStart,
+				EndDttmUTC = DateTime.UtcNow,
+				Type = "ViewNeed",
+				Description = "The Need with Caption " + nvm.Caption + " was viewed"
+			};
+
+			am.Save();
 		}
 
 		protected void SaveNeed()

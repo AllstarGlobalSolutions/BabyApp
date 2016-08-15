@@ -75,6 +75,7 @@
     <Compile Include="Helpers\IPlatformSoundPlayer.cs" />
     <Compile Include="Helpers\IDeviceInfo.cs" />
     <Compile Include="Helpers\ImageResourceExtension.cs" />
+    <Compile Include="ActivityModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GettingStarted.Xamarin" />

@@ -14,6 +14,7 @@ namespace BabyApp.Helpers
 		public const string NEXT_NEED_URL = @"http://192.168.1.6:3000/api/Needs/Next/{0}";
 		public const string NEXT_AD_URL = @"http://192.168.1.6:3000/api/Advertiserments/Next/{0}";
 		public const string IMAGE_URL = @"http://192.168.1.6:3000/api/Files/{0}";
+		public const string ACTIVITY_URL = @"http://192.168.1.6:3000/api/NeedActivity";
 		private const string USER_ID = "UserId";
 		private const string EMAIL_ADDRESS = "Email";
 		private const string AGE_RANGE = "AgeRange";

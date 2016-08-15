@@ -4,7 +4,11 @@
 		<StackLayout BackgroundColor="#3498DB">
 			<ActivityIndicator x:Name="activityIndicator">
 			</ActivityIndicator>
-			<Image x:Name="adImage" HeightRequest="40" HorizontalOptions="Center" />
+			<Image x:Name="adImage" HeightRequest="40" HorizontalOptions="Center">
+				<Image.GestureRecognizers>
+					<TapGestureRecognizer Tapped="OnAdImageTapped" />
+				</Image.GestureRecognizers>
+			</Image>
 			<Image x:Name="needImage" HorizontalOptions="Center" VerticalOptions="FillAndExpand" PropertyChanged="OnImagePropertyChanged" />
 			<Label x:Name="Caption" Text="{Binding Caption}" HorizontalOptions="Center" />
 		</StackLayout>
