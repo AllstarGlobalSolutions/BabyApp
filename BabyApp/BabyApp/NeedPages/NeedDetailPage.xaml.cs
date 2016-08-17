@@ -10,8 +10,9 @@ namespace BabyApp
 	{
 		private DateTime viewDetailStart { get; set; }
 		private Guid needId { get; set; }
+		private string caption { get; set; }
 
-		public NeedDetailPage( Guid needId, string story, string imageUrl )
+		public NeedDetailPage( Guid needId, string caption, string story, string imageUrl )
 		{
 			InitializeComponent();
 
@@ -20,6 +21,7 @@ namespace BabyApp
 			storyLabel.Text = story;
 			viewDetailStart = DateTime.UtcNow;
 			this.needId = needId;
+			this.caption = caption;
 		}
 
 		protected override bool OnBackButtonPressed()
@@ -36,7 +38,7 @@ namespace BabyApp
 				StartDttmUTC = this.viewDetailStart,
 				EndDttmUTC = DateTime.UtcNow,
 				Type = "ViewNeedDetail",
-				Description = "The Need with Caption " + nvm.Caption + " was viewed in the detail mode."
+				Description = "The Need with Caption " + this.caption + " was viewed in the detail mode."
 			};
 
 			am.Save();

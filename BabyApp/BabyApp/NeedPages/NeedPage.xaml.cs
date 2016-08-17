@@ -43,12 +43,19 @@ namespace BabyApp
 		public NeedPage()
 		{
 			InitializeComponent();
+
+			//			Icon = "BabyApp.Images.addressbook.png";
 			nvm = new NeedViewModel();
 			AdViewModel = new AdViewModel();
 			BindingContext = nvm;
 
 			GetNextNeedAsync();
 			GetNextAdAsync();
+		}
+
+		void OnCaptionTapped( object sender, EventArgs args )
+		{
+			Navigation.PushModalAsync( new NeedDetailPage( nvm.NeedId, nvm.Caption, nvm.Story, nvm.Image2Url ) );
 		}
 
 		protected async void GetNextNeedAsync()
@@ -130,6 +137,22 @@ namespace BabyApp
 			}
 		}
 
+		public void OnToolbarItemClicked( object sender, EventArgs args )
+		{
+			ToolbarItem tbi = sender as ToolbarItem;
+
+			// is save clicked
+			if ( tbi.Text == "Save" )
+			{
+				SaveNeed();
+			}
+			// else view list os saved
+			else
+			{
+				Navigation.PushModalAsync( new SavedNeedsPage() );
+			}
+		}
+
 		public void OnImagePropertyChanged( object sender, PropertyChangedEventArgs args )
 		{
 			if ( args.PropertyName == "IsLoading" )
@@ -152,6 +175,7 @@ namespace BabyApp
 			return base.OnBackButtonPressed();
 		}
 
+		/*
 		public void OnToolbarItemClicked( object sender, EventArgs args )
 		{
 			ToolbarItem toolbarItem = ( ToolbarItem )sender;
@@ -159,7 +183,7 @@ namespace BabyApp
 			switch ( toolbarItem.Text )
 			{
 			case "Details":
-				NeedDetailPage detailPage = new NeedDetailPage( nvm.NeedId, nvm.Story, nvm.Image2Url );
+				NeedDetailPage detailPage = new NeedDetailPage( nvm.NeedId, nvm.Caption, nvm.Story, nvm.Image2Url );
 				Navigation.PushAsync( detailPage );
 				break;
 
@@ -183,7 +207,7 @@ namespace BabyApp
 				break;
 			}
 		}
-
+*/
 		protected void SaveActivity()
 		{
 			ActivityModel am = new ActivityModel

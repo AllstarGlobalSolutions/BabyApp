@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BabyApp.CorporatePage" BackgroundColor="#3498DB" Title="Corp Page">
+	<ContentPage.Content>
+		<ScrollView>
+			<StackLayout>
+				<Label x:Name="name" Text="Company Name" />
+				<Label x:Name="backgoundInfo" Text="a little about our company...." />
+			</StackLayout>
+		</ScrollView>
+	</ContentPage.Content>
+	<ContentPage.Icon>
+		<OnPlatform x:TypeArguments="FileImageSource" iOS="addressbook.png" />
+	</ContentPage.Icon>
+</ContentPage>

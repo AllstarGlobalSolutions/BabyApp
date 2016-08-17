@@ -43,14 +43,8 @@
     <Compile Include="ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SettingsPage.xaml.cs">
-      <DependentUpon>SettingsPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="NeedSettingsPage.xaml.cs">
       <DependentUpon>NeedSettingsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NeedPage.xaml.cs">
-      <DependentUpon>NeedPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="DonationPage.xaml.cs">
       <DependentUpon>DonationPage.xaml</DependentUpon>
@@ -58,28 +52,44 @@
     <Compile Include="SavedNeedsPage.xaml.cs">
       <DependentUpon>SavedNeedsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NeedDetailPage.xaml.cs">
-      <DependentUpon>NeedDetailPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NeedTabbedPage.xaml.cs">
-      <DependentUpon>NeedTabbedPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="OrganizationPage.xaml.cs">
-      <DependentUpon>OrganizationPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModels\ProfileViewModel.cs" />
     <Compile Include="ViewModels\NeedViewModel.cs" />
     <Compile Include="ViewModels\AdViewModel.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Helpers\SoundPlayer.cs" />
     <Compile Include="Helpers\IPlatformSoundPlayer.cs" />
-    <Compile Include="Helpers\IDeviceInfo.cs" />
     <Compile Include="Helpers\ImageResourceExtension.cs" />
     <Compile Include="ActivityModel.cs" />
+    <Compile Include="PlatformModel.cs" />
+    <Compile Include="NeedPages\NeedPage.xaml.cs">
+      <DependentUpon>NeedPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NeedPages\NeedDetailPage.xaml.cs">
+      <DependentUpon>NeedDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NeedPages\OrganizationPage.xaml.cs">
+      <DependentUpon>OrganizationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NeedPages\AboutUsPage.xaml.cs">
+      <DependentUpon>AboutUsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NeedPages\NeedTabbedPage.xaml.cs">
+      <DependentUpon>NeedTabbedPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NeedPages\CorporatePage.xaml.cs">
+      <DependentUpon>CorporatePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NeedPages\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BlankPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GettingStarted.Xamarin" />
     <None Include="packages.config" />
+    <None Include="Images\addressbook.png" />
+    <None Include="Images\ai-about.svg" />
+    <None Include="Images\processing.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="WelcomePage.xaml">
@@ -88,13 +98,7 @@
     <EmbeddedResource Include="ProfilePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="SettingsPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Include="NeedSettingsPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="NeedPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="DonationPage.xaml">
@@ -103,13 +107,25 @@
     <EmbeddedResource Include="SavedNeedsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="NeedDetailPage.xaml">
+    <EmbeddedResource Include="NeedPages\NeedPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="NeedTabbedPage.xaml">
+    <EmbeddedResource Include="NeedPages\NeedDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="OrganizationPage.xaml">
+    <EmbeddedResource Include="NeedPages\OrganizationPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NeedPages\AboutUsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NeedPages\NeedTabbedPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NeedPages\CorporatePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NeedPages\SettingsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
@@ -140,6 +156,9 @@
       <HintPath>..\..\packages\Xamarin.Forms.2.3.1.114\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
       <Private>True</Private>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="NeedPages\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.3.1.114\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.1.114\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />

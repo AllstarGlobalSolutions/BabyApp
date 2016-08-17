@@ -1,14 +1,19 @@
 ﻿using System;
 using UIKit;
 using Xamarin.Forms;
-using BabyApp.Helpers;
+using AGS.Toolkit;
 
-[assembly: Dependency( typeof( BabyApp.iOS.DeviceInfo ) )]
+[assembly: Dependency( typeof( BabyApp.iOS.PlatformInfo ) )]
 namespace BabyApp.iOS
 {
-	public class DeviceInfo : IDeviceInfo
+	public class PlatformInfo : IPlatformInfo
 	{
 		UIDevice device = new UIDevice();
+
+		public string GetManufacturer()
+		{
+			return "Apple";
+		}
 
 		public string GetModel()
 		{
@@ -18,6 +23,11 @@ namespace BabyApp.iOS
 		public string GetVersion()
 		{
 			return String.Format( "{0} {1}", device.SystemName, device.SystemVersion );
+		}
+
+		public string GetOS()
+		{
+			return "iOS";
 		}
 	}
 }

@@ -48,9 +48,11 @@ namespace BabyApp
 		{
 			Toolkit.Init();
 			ProfileViewModel = new ProfileViewModel();
+
 			NavigationPage navPage = new NavigationPage( new WelcomePage() );
 			navPage.BackgroundColor = Color.FromRgb( 0x34, 0x98, 0xDB );
 			navPage.BarBackgroundColor = Color.FromRgb( 0x34, 0x98, 0xDB );
+			navPage.BarTextColor = Color.Black;
 
 			MainPage = navPage;
 		}

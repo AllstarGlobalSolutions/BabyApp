@@ -15,6 +15,10 @@ namespace BabyApp.Helpers
 		public const string NEXT_AD_URL = @"http://192.168.1.6:3000/api/Advertiserments/Next/{0}";
 		public const string IMAGE_URL = @"http://192.168.1.6:3000/api/Files/{0}";
 		public const string ACTIVITY_URL = @"http://192.168.1.6:3000/api/NeedActivity";
+		public const string DEVICE_URL = @"http://192.168.1.6:3000/api/DeviceInfo";
+		public const string NEED_TYPES_URL = @"http://192.168.1.6:3000/api/NeedTypes";
+		public const string REGIONS_URL = @"http://192.168.1.6:3000/api/Regions";
+		public const string COUNTRIES_URL = @"http://192.168.1.6:3000/api/Countries";
 		private const string USER_ID = "UserId";
 		private const string EMAIL_ADDRESS = "Email";
 		private const string AGE_RANGE = "AgeRange";
@@ -25,6 +29,7 @@ namespace BabyApp.Helpers
 		private const string SAVED_COUNT = "SavedCount";
 		private const string SAVED = "Saved";
 		private const string ACCESS_TOKEN = "AccessToken";
+		private const string DEVICE_SAVED = "DeviceSaved";
 
 		private static IDictionary<string, object> properties = Application.Current.Properties;
 
@@ -155,6 +160,23 @@ namespace BabyApp.Helpers
 			set
 			{
 				properties[ ACCESS_TOKEN ] = value;
+			}
+		}
+
+		public static bool DeviceSaved
+		{
+			get
+			{
+				if ( properties.ContainsKey( DEVICE_SAVED ) )
+				{
+					return ( bool )properties[ DEVICE_SAVED ];
+				}
+
+				return false;
+			}
+			set
+			{
+				properties[ DEVICE_SAVED ] = value;
 			}
 		}
 

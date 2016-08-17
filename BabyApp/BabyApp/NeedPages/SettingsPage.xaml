@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BabyApp.SettingsPage" BackgroundColor="#3498DB" Title="Settings">
+	<ContentPage.Padding>
+		<OnPlatform x:TypeArguments="Thickness" iOS="5,20,5,5" Android="5" WinPhone="5" />
+	</ContentPage.Padding>
+	<ContentPage.Content>
+		<StackLayout>
+			<StackLayout.Children>
+				<Label Text="Customize Which Needs You See" FontSize="Small" />
+				<StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="20">
+					<Button x:Name="NeedTypeButton" WidthRequest="80" Text="Need Type" HorizontalOptions="CenterAndExpand" TextColor="Black" BackgroundColor="Silver" Clicked="OnNeedTypeClicked" />
+					<Button x:Name="RegionButton" WidthRequest="80" Text="Region" HorizontalOptions="CenterAndExpand" TextColor="Black" BackgroundColor="Silver" Clicked="OnRegionClicked" />
+					<Button x:Name="CountryButton" WidthRequest="80" Text="Country" HorizontalOptions="CenterAndExpand" TextColor="Black" BackgroundColor="Silver" Clicked="OnCountryClicked" />
+				</StackLayout>
+				<ListView x:Name="NeedTypes" BackgroundColor="#3498DB" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<ViewCell>
+								<ContentView HorizontalOptions="FillAndExpand">
+									<StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+										<Label Text="{Binding Description}" HorizontalOptions="StartAndExpand" />
+										<Switch IsToggled="true" HorizontalOptions="End" />
+									</StackLayout>
+								</ContentView>
+							</ViewCell>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
+				<ListView x:Name="Regions" BackgroundColor="#3498DB" VerticalOptions="FillAndExpand" IsVisible="false">
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<ViewCell>
+								<ContentView HorizontalOptions="FillAndExpand">
+									<StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+										<Label Text="{Binding Name}" HorizontalOptions="StartAndExpand" />
+										<Switch IsToggled="true" HorizontalOptions="End" />
+									</StackLayout>
+								</ContentView>
+							</ViewCell>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
+				<ListView x:Name="Countries" BackgroundColor="#3498DB" VerticalOptions="FillAndExpand" IsVisible="false">
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<ViewCell>
+								<ContentView HorizontalOptions="FillAndExpand">
+									<StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+										<Label Text="{Binding Name}" HorizontalOptions="StartAndExpand" />
+										<Switch IsToggled="true" HorizontalOptions="End" />
+									</StackLayout>
+								</ContentView>
+							</ViewCell>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
+				<Label Text="Tags" />
+				<Entry x:Name="Tags" Placeholder="Enter tags to match needs" />
+			</StackLayout.Children>
+		</StackLayout>
+	</ContentPage.Content>
+	<ContentPage.Icon>
+		<OnPlatform x:TypeArguments="FileImageSource" iOS="processing.png" />
+	</ContentPage.Icon>
+</ContentPage>

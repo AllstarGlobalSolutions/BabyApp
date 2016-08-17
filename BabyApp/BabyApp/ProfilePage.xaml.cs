@@ -6,7 +6,8 @@ using BabyApp.ViewModels;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
-using System.IO;
+using System.Threading.Tasks;
+using AGS.Toolkit;
 
 namespace BabyApp
 {
@@ -47,12 +48,16 @@ namespace BabyApp
 			return true;
 		}
 
-		public void OnRegisterButtonClicked( object sender, EventArgs e )
+		public async void OnRegisterButtonClicked( object sender, EventArgs e )
 		{
-			RegisterUser();
+			if ( await RegisterUserAsync() )
+			{
+				SendDeviceInfo();
+				await Navigation.PopModalAsync();
+			}
 		}
 
-		public async void RegisterUser()
+		public async Task<bool> RegisterUserAsync()
 		{
 			ErrorLabel.IsVisible = false;
 
@@ -86,10 +91,11 @@ namespace BabyApp
 						{
 							ErrorLabel.Text = app.LoginError;
 							ErrorLabel.IsVisible = true;
+							return false;
 						}
 						else
 						{
-							await Navigation.PopModalAsync();
+							return true;
 						}
 					}
 					else
@@ -106,13 +112,35 @@ namespace BabyApp
 							ErrorLabel.Text = "Unknown Error.  Try again Later.";
 							ErrorLabel.IsVisible = true;
 						}
+
+						return false;
 					}
 				}
 				catch ( Exception e )
 				{
 					ErrorLabel.Text = e.Message;
 					ErrorLabel.IsVisible = true;
+					return false;
 				}
+			}
+		}
+
+		async void SendDeviceInfo()
+		{
+			IPlatformInfo platformInfo = DependencyService.Get<IPlatformInfo>();
+
+			PlatformModel pm = new PlatformModel
+			{
+				UserId = Guid.Parse( Settings.UserId ),
+				Model = platformInfo.GetModel(),
+				Manufacturer = platformInfo.GetManufacturer(),
+				Version = platformInfo.GetVersion(),
+				OS = platformInfo.GetOS()
+			};
+
+			if ( await pm.Save() )
+			{
+				Settings.DeviceSaved = true;
 			}
 		}
 

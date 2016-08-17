@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using BabyApp.Helpers;
+
 using Xamarin.Forms;
 
 namespace BabyApp
 {
-	public partial class SettingsPage : ContentPage
+	public partial class CorporatePage : ContentPage
 	{
-		public SettingsPage()
+		public CorporatePage()
 		{
 			InitializeComponent();
 		}

@@ -98,7 +98,7 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DeviceInfo.cs" />
+    <Compile Include="PlatformInfo.cs" />
     <Compile Include="PlatformSoundPlayer.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -119,6 +119,10 @@
     <ProjectReference Include="..\BabyApp\BabyApp.csproj">
       <Name>BabyApp</Name>
       <Project>{C7CC1C48-FEA9-4C17-A529-8AE2DAF48182}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\AGS.Toolkit\AGS.Toolkit.csproj">
+      <Project>{67F9D3A8-F71E-4428-913F-C37AE82CDB24}</Project>
+      <Name>AGS.Toolkit</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

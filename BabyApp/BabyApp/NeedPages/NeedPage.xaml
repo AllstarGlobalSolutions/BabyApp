@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BabyApp.NeedPage" BackgroundColor="#3498DB" Title="Need">
+	<ContentPage.Content>
+		<StackLayout BackgroundColor="#3498DB">
+			<ActivityIndicator x:Name="activityIndicator">
+			</ActivityIndicator>
+			<Image x:Name="needImage" HorizontalOptions="Center" VerticalOptions="FillAndExpand" PropertyChanged="OnImagePropertyChanged" />
+			<Label x:Name="Caption" Text="{Binding Caption}" HorizontalOptions="Center">
+				<Label.GestureRecognizers>
+					<TapGestureRecognizer Tapped="OnCaptionTapped" />
+				</Label.GestureRecognizers>
+			</Label>
+			<Label x:Name="Tags" />
+			<Label FontSize="Small" Text="The corporation below has made a donation on your behalf." />
+			<Image x:Name="adImage" HeightRequest="40" HorizontalOptions="Center">
+				<Image.GestureRecognizers>
+					<TapGestureRecognizer Tapped="OnAdImageTapped" />
+				</Image.GestureRecognizers>
+			</Image>
+		</StackLayout>
+	</ContentPage.Content>
+	<ContentPage.Icon>
+		<OnPlatform x:TypeArguments="FileImageSource" iOS="agent.png" />
+	</ContentPage.Icon>
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Text="Save" Order="Primary" Clicked="OnToolbarItemClicked">
+			<ToolbarItem.Icon>
+				<OnPlatform x:TypeArguments="FileImageSource" iOS="save.png" Android="ai-save.png" />
+			</ToolbarItem.Icon>
+		</ToolbarItem>
+		<ToolbarItem Text="Saved Items" Order="Primary" Clicked="OnToolbarItemClicked">
+			<ToolbarItem.Icon>
+				<OnPlatform x:TypeArguments="FileImageSource" iOS="star.png" Android="ai_read.png" />
+			</ToolbarItem.Icon>
+		</ToolbarItem>
+	</ContentPage.ToolbarItems>
+</ContentPage>
