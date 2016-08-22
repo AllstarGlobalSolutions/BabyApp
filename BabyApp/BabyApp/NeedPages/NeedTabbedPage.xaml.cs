@@ -10,6 +10,8 @@ namespace BabyApp
 		public NeedTabbedPage()
 		{
 			InitializeComponent();
+		
+			NavigationPage.SetHasNavigationBar( this, true );
 		}
 	}
 }

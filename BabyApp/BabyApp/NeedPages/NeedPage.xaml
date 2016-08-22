@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BabyApp.NeedPage" BackgroundColor="#3498DB" Title="Need">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BabyApp.NeedPage" BackgroundColor="#3498DB" Title="需要">
 	<ContentPage.Content>
 		<StackLayout BackgroundColor="#3498DB">
 			<ActivityIndicator x:Name="activityIndicator">
@@ -11,7 +11,7 @@
 				</Label.GestureRecognizers>
 			</Label>
 			<Label x:Name="Tags" />
-			<Label FontSize="Small" Text="The corporation below has made a donation on your behalf." />
+			<Label FontSize="Small" Text="此次赞助是由以下机构为您资助的，他们所有捐赠将直接传送给相关慈善公益组织。" />
 			<Image x:Name="adImage" HeightRequest="40" HorizontalOptions="Center">
 				<Image.GestureRecognizers>
 					<TapGestureRecognizer Tapped="OnAdImageTapped" />
@@ -23,12 +23,12 @@
 		<OnPlatform x:TypeArguments="FileImageSource" iOS="agent.png" />
 	</ContentPage.Icon>
 	<ContentPage.ToolbarItems>
-		<ToolbarItem Text="Save" Order="Primary" Clicked="OnToolbarItemClicked">
+		<ToolbarItem Text="保存" Order="Primary" Clicked="OnToolbarItemClicked">
 			<ToolbarItem.Icon>
 				<OnPlatform x:TypeArguments="FileImageSource" iOS="save.png" Android="ai-save.png" />
 			</ToolbarItem.Icon>
 		</ToolbarItem>
-		<ToolbarItem Text="Saved Items" Order="Primary" Clicked="OnToolbarItemClicked">
+		<ToolbarItem Text="保存的需要" Order="Primary" Clicked="OnToolbarItemClicked">
 			<ToolbarItem.Icon>
 				<OnPlatform x:TypeArguments="FileImageSource" iOS="star.png" Android="ai_read.png" />
 			</ToolbarItem.Icon>

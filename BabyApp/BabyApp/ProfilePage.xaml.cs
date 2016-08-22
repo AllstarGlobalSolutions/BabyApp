@@ -36,7 +36,7 @@ namespace BabyApp
 
 			BindingContext = profileViewModel;
 
-			if ( !String.IsNullOrEmpty( Settings.Email ) )
+			if ( !String.IsNullOrEmpty( Settings.UserId ) )
 			{
 				RegisterButton.IsVisible = false;
 			}
@@ -83,7 +83,8 @@ namespace BabyApp
 
 					if ( response.IsSuccessStatusCode )
 					{
-						profileViewModel.UserId = await response.Content.ReadAsStringAsync();
+						string json = await response.Content.ReadAsStringAsync();
+						profileViewModel.UserId = JsonConvert.DeserializeObject<string>( json );
 						SaveSettings();
 						App app = ( ( App )Application.Current );
 
@@ -128,7 +129,7 @@ namespace BabyApp
 		async void SendDeviceInfo()
 		{
 			IPlatformInfo platformInfo = DependencyService.Get<IPlatformInfo>();
-
+			string userId = Settings.UserId;
 			PlatformModel pm = new PlatformModel
 			{
 				UserId = Guid.Parse( Settings.UserId ),
@@ -153,6 +154,7 @@ namespace BabyApp
 			Settings.AgeRange = profileViewModel.AgeRange;
 			Settings.Gender = profileViewModel.Gender;
 			Settings.Occupation = profileViewModel.Occupation;
+			Application.Current.SavePropertiesAsync();
 		}
 	}
 }

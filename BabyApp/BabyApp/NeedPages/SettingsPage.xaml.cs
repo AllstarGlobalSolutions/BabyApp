@@ -45,18 +45,41 @@ namespace BabyApp
 
 					if ( response.IsSuccessStatusCode )
 					{
-						List<NeedType> needTypes = JsonConvert.DeserializeObject<List<NeedType>>( await response.Content.ReadAsStringAsync() );
-						NeedTypes.ItemsSource = needTypes;
+						string json = await response.Content.ReadAsStringAsync();
+						List<NeedType> needTypes = JsonConvert.DeserializeObject<List<NeedType>>( json );
+						NeedTypeTable.Root.Add( new TableSection() );
+						string savedNeedTypes = Settings.NeedTypes;
+
+						foreach ( NeedType nt in needTypes )
+						{
+							SwitchCell cell = new SwitchCell();
+							cell.Text = nt.Description;
+
+							if ( String.IsNullOrEmpty( savedNeedTypes ) || savedNeedTypes.Contains( nt.Description ) )
+							{
+								cell.On = true;
+							}
+							else
+							{
+								cell.On = false;
+							}
+							NeedTypeTable.Root[ 0 ].Add( cell );
+						}
+//						NeedTypes.ItemsSource = needTypes;
 					}
 					else
 					{
-						NeedTypes.ItemsSource = new List<NeedType>();
+						NeedTypeTable.Root.Add( new TableSection() );
+						NeedTypeTable.Root[ 0 ].Add( new SwitchCell { Text = "Hunger", On = true } );
+//						NeedTypes.ItemsSource = new List<NeedType>();
 					}
 				}
 				catch ( Exception e )
 				{
 					var m = e.Message;
-					NeedTypes.ItemsSource = new List<NeedType>();
+					//					NeedTypes.ItemsSource = new List<NeedType>();
+					NeedTypeTable.Root.Add( new TableSection() );
+					NeedTypeTable.Root[ 0 ].Add( new SwitchCell { Text = "Hunger", On = true } );
 				}
 			}
 		}
@@ -88,17 +111,39 @@ namespace BabyApp
 					if ( response.IsSuccessStatusCode )
 					{
 						List<Region> regions = JsonConvert.DeserializeObject<List<Region>>( await response.Content.ReadAsStringAsync() );
-						Regions.ItemsSource = regions;
+						RegionTable.Root.Add( new TableSection() );
+						string savedRegions = Settings.Regions;
+
+						foreach ( Region region in regions )
+						{
+							SwitchCell cell = new SwitchCell();
+							cell.Text = region.Name;
+
+							if ( String.IsNullOrEmpty( savedRegions ) || savedRegions.Contains( region.Name ) )
+							{
+								cell.On = true;
+							}
+							else
+							{
+								cell.On = false;
+							}
+							RegionTable.Root[ 0 ].Add( cell );
+						}
+//						Regions.ItemsSource = regions;
 					}
 					else
 					{
-						Regions.ItemsSource = new List<Region>();
+						//						Regions.ItemsSource = new List<Region>();
+						RegionTable.Root.Add( new TableSection() );
+						RegionTable.Root[ 0 ].Add( new SwitchCell { Text = "Asia", On = true } );
 					}
 				}
 				catch ( Exception e )
 				{
 					var m = e.Message;
-					Regions.ItemsSource = new List<Region>();
+					//					Regions.ItemsSource = new List<Region>();
+					RegionTable.Root.Add( new TableSection() );
+					RegionTable.Root[ 0 ].Add( new SwitchCell { Text = "Asia", On = true } );
 				}
 			}
 		}
@@ -130,40 +175,75 @@ namespace BabyApp
 					if ( response.IsSuccessStatusCode )
 					{
 						List<Country> countries = JsonConvert.DeserializeObject<List<Country>>( await response.Content.ReadAsStringAsync() );
-						Countries.ItemsSource = countries;
+						CountryTable.Root.Add( new TableSection() );
+						string savedCountries = Settings.Countries;
+
+						foreach ( Country country in countries )
+						{
+							SwitchCell cell = new SwitchCell();
+							cell.Text = country.Name;
+
+							if ( String.IsNullOrEmpty( savedCountries ) || savedCountries.Contains( country.Name ) )
+							{
+								cell.On = true;
+							}
+							else
+							{
+								cell.On = false;
+							}
+							CountryTable.Root[ 0 ].Add( cell );
+						}
+//						Countries.ItemsSource = countries;
 					}
 					else
 					{
-						Countries.ItemsSource = new List<Country>();
+						//						Countries.ItemsSource = new List<Country>();
+						CountryTable.Root.Add( new TableSection() );
+						CountryTable.Root[ 0 ].Add( new SwitchCell { Text = "China", On = true } );
 					}
 				}
 				catch ( Exception e )
 				{
 					var m = e.Message;
-					Countries.ItemsSource = new List<Country>();
+					//					Countries.ItemsSource = new List<Country>();
+					CountryTable.Root.Add( new TableSection() );
+					CountryTable.Root[ 0 ].Add( new SwitchCell { Text = "China", On = true } );
 				}
 			}
 		}
 
 		void OnNeedTypeClicked( object sender, EventArgs args )
 		{
-			Regions.IsVisible = false;
-			Countries.IsVisible = false;
-			NeedTypes.IsVisible = true;
+			//			Regions.IsVisible = false;
+			//			Countries.IsVisible = false;
+			//			NeedTypes.IsVisible = true;
+			RegionTable.IsVisible = false;
+			CountryTable.IsVisible = false;
+			NeedTypeTable.IsVisible = true;
 		}
 
 		void OnRegionClicked( object sender, EventArgs args )
 		{
-			NeedTypes.IsVisible = false;
-			Countries.IsVisible = false;
-			Regions.IsVisible = true;
+			//			NeedTypes.IsVisible = false;
+			//			Countries.IsVisible = false;
+			//			Regions.IsVisible = true;
+			NeedTypeTable.IsVisible = false;
+			CountryTable.IsVisible = false;
+			RegionTable.IsVisible = true;
 		}
 
 		void OnCountryClicked( object sender, EventArgs args )
 		{
-			NeedTypes.IsVisible = false;
-			Regions.IsVisible = false;
-			Countries.IsVisible = true;
+			//			NeedTypes.IsVisible = false;
+			//			Regions.IsVisible = false;
+			//			Countries.IsVisible = true;
+			NeedTypeTable.IsVisible = false;
+			RegionTable.IsVisible = false;
+			CountryTable.IsVisible = true;
+		}
+
+		void OnSave( object sender, EventArgs args )
+		{
 		}
 	}
 }

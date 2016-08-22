@@ -1,14 +1,18 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BabyApp.AboutUsPage" BackgroundColor="#3498DB" Title="About Us">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+				 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+				 x:Class="BabyApp.AboutUsPage"
+				 BackgroundColor="#3498DB"
+				 Title="关于我们">
 	<ContentPage.Content>
 		<ScrollView>
 			<StackLayout>
-				<Label x:Name="name" Text="Baby Company" />
-				<Label x:Name="backgoundInfo" Text="This is a little about who we are...." />
+				<Label x:Name="name" Text  ="Baby Company" />
+				<Label x:Name="backgoundInfo" Text  ="This is a little about who we are...." />
 			</StackLayout>
 		</ScrollView>
 	</ContentPage.Content>
 	<ContentPage.Icon>
-		<OnPlatform x:TypeArguments="FileImageSource" iOS="line-globe.png" />
+		<OnPlatform x:TypeArguments="FileImageSource" iOS            ="line-globe.png" />
 	</ContentPage.Icon>
 </ContentPage>

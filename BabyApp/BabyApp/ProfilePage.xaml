@@ -11,16 +11,17 @@
 					<EntryCell Label="Email" Text="{Binding Email}" Placeholder="Email Address" Keyboard="Email" />
 				</TableSection>
 				<TableSection Title="Optional">
-					<EntryCell Label="Surname" Text="{Binding Surname}" Placeholder="Surname" Keyboard="Text" />
-					<EntryCell Label="Given Name" Text="{Binding GivenName}" Placeholder="Given Name(s)" Keyboard="Text" />
-					<EntryCell Label="Phone Number" Text="{Binding Phone}" Keyboard="Telephone" />
-					<EntryCell Label="Occupation" Text="{Binding Occupation}" Placeholder="Occupation" Keyboard="Text" />
-					<toolkit:PickerCell Label="Gender:" Title="Gender" SelectedValue="{Binding Gender}">
-						<x:String>Not Set</x:String>
-						<x:String>Male</x:String>
-						<x:String>Female</x:String>
+					<EntryCell Label="姓" Text="{Binding Surname}" Placeholder="Surname" Keyboard="Text" />
+					<EntryCell Label="名" Text="{Binding GivenName}" Placeholder="Given Name(s)" Keyboard="Text" />
+					<EntryCell Label="电话号码" Text="{Binding Phone}" Keyboard="Telephone" />
+					<EntryCell Label="工作" Text="{Binding Occupation}" Placeholder="Occupation" Keyboard="Text" />
+					<toolkit:PickerCell Label="性:" Title="性" SelectedValue="{Binding Gender}">
+						<x:String>没选择</x:String>
+						<x:String>男</x:String>
+						<x:String>女</x:String>
 					</toolkit:PickerCell>
-					<toolkit:PickerCell Label="Age Range:" Title="Age Range" SelectedValue="{Binding AgeRange}" BackgroundColor="#3498DB">
+					<toolkit:PickerCell Label="年龄" Title="年龄" SelectedValue="{Binding AgeRange}" BackgroundColor="#3498DB">
+						<x:String>没选择</x:String>
 						<x:String>10 - 19</x:String>
 						<x:String>20 - 29</x:String>
 						<x:String>30 - 39</x:String>
@@ -31,6 +32,6 @@
 				</TableSection>
 			</TableRoot>
 		</TableView>
-		<Button x:Name="RegisterButton" Text="Register" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Clicked="OnRegisterButtonClicked" IsEnabled="{Binding IsValid}" />
+		<Button x:Name="RegisterButton" Text="登记" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Clicked="OnRegisterButtonClicked" IsEnabled="{Binding IsValid}" />
 	</StackLayout>
 </ContentPage>

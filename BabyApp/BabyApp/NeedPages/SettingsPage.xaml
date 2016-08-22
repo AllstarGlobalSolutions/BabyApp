@@ -8,18 +8,29 @@
 			<StackLayout.Children>
 				<Label Text="Customize Which Needs You See" FontSize="Small" />
 				<StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="20">
-					<Button x:Name="NeedTypeButton" WidthRequest="80" Text="Need Type" HorizontalOptions="CenterAndExpand" TextColor="Black" BackgroundColor="Silver" Clicked="OnNeedTypeClicked" />
-					<Button x:Name="RegionButton" WidthRequest="80" Text="Region" HorizontalOptions="CenterAndExpand" TextColor="Black" BackgroundColor="Silver" Clicked="OnRegionClicked" />
-					<Button x:Name="CountryButton" WidthRequest="80" Text="Country" HorizontalOptions="CenterAndExpand" TextColor="Black" BackgroundColor="Silver" Clicked="OnCountryClicked" />
+					<StackLayout.Children>
+						<Button x:Name="NeedTypeButton" WidthRequest="80" Text="Need Type" HorizontalOptions="CenterAndExpand" TextColor="Black" BackgroundColor="Silver" Clicked="OnNeedTypeClicked" />
+						<Button x:Name="RegionButton" WidthRequest="80" Text="Region" HorizontalOptions="CenterAndExpand" TextColor="Black" BackgroundColor="Silver" Clicked="OnRegionClicked" />
+						<Button x:Name="CountryButton" WidthRequest="80" Text="Country" HorizontalOptions="CenterAndExpand" TextColor="Black" BackgroundColor="Silver" Clicked="OnCountryClicked" />
+					</StackLayout.Children>
 				</StackLayout>
-				<ListView x:Name="NeedTypes" BackgroundColor="#3498DB" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+				<ScrollView VerticalOptions="FillAndExpand">
+					<ScrollView.Content>
+						<StackLayout>
+							<TableView x:Name="NeedTypeTable"></TableView>
+							<TableView x:Name="RegionTable" IsVisible="false"></TableView>
+							<TableView x:Name="CountryTable" IsVisible="false"></TableView>
+						</StackLayout>
+					</ScrollView.Content>
+				</ScrollView>
+<!--				<ListView x:Name="NeedTypes" BackgroundColor="#3498DB" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
 					<ListView.ItemTemplate>
 						<DataTemplate>
 							<ViewCell>
 								<ContentView HorizontalOptions="FillAndExpand">
 									<StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
 										<Label Text="{Binding Description}" HorizontalOptions="StartAndExpand" />
-										<Switch IsToggled="true" HorizontalOptions="End" />
+										<Switch HorizontalOptions="End" />
 									</StackLayout>
 								</ContentView>
 							</ViewCell>
@@ -33,7 +44,7 @@
 								<ContentView HorizontalOptions="FillAndExpand">
 									<StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
 										<Label Text="{Binding Name}" HorizontalOptions="StartAndExpand" />
-										<Switch IsToggled="true" HorizontalOptions="End" />
+										<Switch HorizontalOptions="End" />
 									</StackLayout>
 								</ContentView>
 							</ViewCell>
@@ -47,15 +58,16 @@
 								<ContentView HorizontalOptions="FillAndExpand">
 									<StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
 										<Label Text="{Binding Name}" HorizontalOptions="StartAndExpand" />
-										<Switch IsToggled="true" HorizontalOptions="End" />
+										<Switch HorizontalOptions="End" />
 									</StackLayout>
 								</ContentView>
 							</ViewCell>
 						</DataTemplate>
 					</ListView.ItemTemplate>
-				</ListView>
+				</ListView> -->
 				<Label Text="Tags" />
 				<Entry x:Name="Tags" Placeholder="Enter tags to match needs" />
+				<Button Clicked="OnSave" Text="Save" />
 			</StackLayout.Children>
 		</StackLayout>
 	</ContentPage.Content>

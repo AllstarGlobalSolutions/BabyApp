@@ -9,13 +9,13 @@ namespace BabyApp.Helpers
 {
 	public class Settings
 	{
-		public const string REGISTER_URL = @"http://192.168.1.6:3000/api/Account/Register/{0}";
+		public const string REGISTER_URL = @"http://192.168.1.6:3000/api/Account/Register";
 		public const string LOGIN_URL = @"http://192.168.1.6:3000/Token";
 		public const string NEXT_NEED_URL = @"http://192.168.1.6:3000/api/Needs/Next/{0}";
 		public const string NEXT_AD_URL = @"http://192.168.1.6:3000/api/Advertiserments/Next/{0}";
 		public const string IMAGE_URL = @"http://192.168.1.6:3000/api/Files/{0}";
 		public const string ACTIVITY_URL = @"http://192.168.1.6:3000/api/NeedActivity";
-		public const string DEVICE_URL = @"http://192.168.1.6:3000/api/DeviceInfo";
+		public const string DEVICE_URL = @"http://192.168.1.6:3000/api/DeviceInfoes";
 		public const string NEED_TYPES_URL = @"http://192.168.1.6:3000/api/NeedTypes";
 		public const string REGIONS_URL = @"http://192.168.1.6:3000/api/Regions";
 		public const string COUNTRIES_URL = @"http://192.168.1.6:3000/api/Countries";
@@ -30,6 +30,9 @@ namespace BabyApp.Helpers
 		private const string SAVED = "Saved";
 		private const string ACCESS_TOKEN = "AccessToken";
 		private const string DEVICE_SAVED = "DeviceSaved";
+		private const string SAVED_NEED_TYPES = "NeedTypes";
+		private const string SAVED_REGIONS = "Regions";
+		private const string SAVED_COUNTRIES = "Countries";
 
 		private static IDictionary<string, object> properties = Application.Current.Properties;
 
@@ -177,6 +180,57 @@ namespace BabyApp.Helpers
 			set
 			{
 				properties[ DEVICE_SAVED ] = value;
+			}
+		}
+
+		public static string NeedTypes
+		{
+			get
+			{
+				if ( properties.ContainsKey( SAVED_NEED_TYPES ) )
+				{
+					return ( string )properties[ SAVED_NEED_TYPES ];
+				}
+
+				return null;
+			}
+			set
+			{
+				properties[ SAVED_NEED_TYPES ] = value;
+			}
+		}
+
+		public static string Regions
+		{
+			get
+			{
+				if ( properties.ContainsKey( SAVED_REGIONS ) )
+				{
+					return ( string )properties[ SAVED_REGIONS ];
+				}
+
+				return null;
+			}
+			set
+			{
+				properties[ SAVED_REGIONS ] = value;
+			}
+		}
+
+		public static string Countries
+		{
+			get
+			{
+				if ( properties.ContainsKey( SAVED_COUNTRIES ) )
+				{
+					return ( string )properties[ SAVED_COUNTRIES ];
+				}
+
+				return null;
+			}
+			set
+			{
+				properties[ SAVED_COUNTRIES ] = value;
 			}
 		}
 
