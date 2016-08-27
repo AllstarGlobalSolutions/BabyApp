@@ -27,7 +27,7 @@
 
 
 					HttpContent content = new StringContent( JsonConvert.SerializeObject( this ), Encoding.UTF8, "application/json" );
-					Uri uri = new Uri( Settings.DEVICE_URL, UriKind.Absolute );
+					Uri uri = new Uri( Settings.BaseUrl + Settings.DeviceUrl, UriKind.Absolute );
 
 					//TODO: for now we're not going to track errors...in the future it would be nice to save it locally and try again later
 					HttpResponseMessage response = await client.PostAsync( uri, content );

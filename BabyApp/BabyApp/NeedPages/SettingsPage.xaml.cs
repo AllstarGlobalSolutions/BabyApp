@@ -40,7 +40,7 @@ namespace BabyApp
 					client.DefaultRequestHeaders.Accept.Add( new MediaTypeWithQualityHeaderValue( "application/json" ) );
 					client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue( "Bearer", Settings.AccessToken );
 
-					Uri uri = new Uri( String.Format( Settings.NEED_TYPES_URL, Settings.UserId ), UriKind.Absolute );
+					Uri uri = new Uri( String.Format( Settings.BaseUrl + Settings.NeedTypeUrl, Settings.UserId ), UriKind.Absolute );
 					HttpResponseMessage response = await client.GetAsync( uri );
 
 					if ( response.IsSuccessStatusCode )
@@ -105,7 +105,7 @@ namespace BabyApp
 					client.DefaultRequestHeaders.Accept.Add( new MediaTypeWithQualityHeaderValue( "application/json" ) );
 					client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue( "Bearer", Settings.AccessToken );
 
-					Uri uri = new Uri( String.Format( Settings.REGIONS_URL, Settings.UserId ), UriKind.Absolute );
+					Uri uri = new Uri( String.Format( Settings.BaseUrl + Settings.RegionUrl, Settings.UserId ), UriKind.Absolute );
 					HttpResponseMessage response = await client.GetAsync( uri );
 
 					if ( response.IsSuccessStatusCode )
@@ -169,7 +169,7 @@ namespace BabyApp
 					client.DefaultRequestHeaders.Accept.Add( new MediaTypeWithQualityHeaderValue( "application/json" ) );
 					client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue( "Bearer", Settings.AccessToken );
 
-					Uri uri = new Uri( String.Format( Settings.COUNTRIES_URL, Settings.UserId ), UriKind.Absolute );
+					Uri uri = new Uri( String.Format( Settings.BaseUrl + Settings.CountryUrl, Settings.UserId ), UriKind.Absolute );
 					HttpResponseMessage response = await client.GetAsync( uri );
 
 					if ( response.IsSuccessStatusCode )

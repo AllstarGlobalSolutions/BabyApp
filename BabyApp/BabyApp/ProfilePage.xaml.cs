@@ -78,7 +78,7 @@ namespace BabyApp
 					};
 
 					HttpContent content = new StringContent( JsonConvert.SerializeObject( rm ), Encoding.UTF8, "application/json" );
-					Uri uri = new Uri( String.Format( Settings.REGISTER_URL, Settings.Email ), UriKind.Absolute );
+					Uri uri = new Uri( String.Format( Settings.BaseUrl + Settings.RegisterUrl, Settings.Email ), UriKind.Absolute );
 					HttpResponseMessage response = await client.PostAsync( uri, content );
 
 					if ( response.IsSuccessStatusCode )

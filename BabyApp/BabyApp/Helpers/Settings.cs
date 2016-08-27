@@ -9,16 +9,171 @@ namespace BabyApp.Helpers
 {
 	public class Settings
 	{
-		public const string REGISTER_URL = @"http://192.168.1.6:3000/api/Account/Register";
-		public const string LOGIN_URL = @"http://192.168.1.6:3000/Token";
-		public const string NEXT_NEED_URL = @"http://192.168.1.6:3000/api/Needs/Next/{0}";
-		public const string NEXT_AD_URL = @"http://192.168.1.6:3000/api/Advertiserments/Next/{0}";
-		public const string IMAGE_URL = @"http://192.168.1.6:3000/api/Files/{0}";
-		public const string ACTIVITY_URL = @"http://192.168.1.6:3000/api/NeedActivity";
-		public const string DEVICE_URL = @"http://192.168.1.6:3000/api/DeviceInfoes";
-		public const string NEED_TYPES_URL = @"http://192.168.1.6:3000/api/NeedTypes";
-		public const string REGIONS_URL = @"http://192.168.1.6:3000/api/Regions";
-		public const string COUNTRIES_URL = @"http://192.168.1.6:3000/api/Countries";
+		private const string BASE_URL = "BaseUrl";
+		public static string BaseUrl
+		{
+			get
+			{
+				if ( properties.ContainsKey( BASE_URL ) )
+					return ( string )properties[ BASE_URL ];
+				return @"http://192.168.1.6:3000";
+			}
+			set
+			{
+				properties[ BASE_URL ] = value;
+			}
+		}
+
+		private const string LOGIN_URL = "LoginUrl";
+		public static string LoginUrl
+		{
+			get
+			{
+				if ( properties.ContainsKey( LOGIN_URL ) )
+					return ( string )properties[ LOGIN_URL ]; // "/token"
+				return @"/token";
+			}
+			set
+			{
+				properties[ LOGIN_URL ] = value;
+			}
+		}
+
+		private const string REGISTER_URL = "RegisterUrl";
+		public static string RegisterUrl
+		{
+			get
+			{
+				if ( properties.ContainsKey( REGISTER_URL ) )
+					return ( string )properties[ REGISTER_URL ]; // "/api/Account/Register"
+				return @"/api/Account/Register";
+			}
+			set
+			{
+				properties[ REGISTER_URL ] = value;
+			}
+		}
+
+		private const string NEXT_NEED_URL = "NextNeedUrl";
+		public static string NextNeedUrl
+		{
+			get
+			{
+				if ( properties.ContainsKey( NEXT_NEED_URL ) )
+					return ( string )properties[ NEXT_NEED_URL ]; // "/api/Needs/Next/{0}"
+				return @"/api/Needs/Next/{0}";
+			}
+			set
+			{
+				properties[ NEXT_NEED_URL ] = value;
+			}
+		}
+
+		private const string NEXT_AD_URL = "NextAdUrl";
+		public static string NextAdUrl
+		{
+			get
+			{
+				if ( properties.ContainsKey( NEXT_AD_URL ) )
+					return ( string )properties[ NEXT_AD_URL ]; // "/api/Advertisements/Next/{0}"
+				return @"/api/Advertisements/Next/{0}";
+			}
+			set
+			{
+				properties[ NEXT_AD_URL ] = value;
+			}
+		}
+
+		private const string IMAGE_URL = "ImageUrl";
+		public static string ImageUrl
+		{
+			get
+			{
+				if ( properties.ContainsKey( IMAGE_URL ) )
+					return ( string )properties[ IMAGE_URL ]; // "/api/Files/{0}"
+				return @"/api/Files/{0}";
+			}
+			set
+			{
+				properties[ IMAGE_URL ] = value;
+			}
+		}
+
+		private const string ACTIVITY_URL = "ActivityUrl";
+		public static string ActivityUrl
+		{
+			get
+			{
+				if ( properties.ContainsKey( ACTIVITY_URL ) )
+					return ( string )properties[ ACTIVITY_URL ]; // "/api/NeedActivity"
+				return @"/api/NeedActivity";
+			}
+			set
+			{
+				properties[ ACTIVITY_URL ] = value;
+			}
+		}
+
+		private const string DEVICE_URL = "DeviceUrl";
+		public static string DeviceUrl
+		{
+			get
+			{
+				if ( properties.ContainsKey( DEVICE_URL ) )
+					return ( string )properties[ DEVICE_URL ]; // "/api/DeviceInfoes"
+				return @"/api/DeviceInfoes";
+			}
+			set
+			{
+				properties[ DEVICE_URL ] = value;
+			}
+		}
+
+		private const string NEED_TYPE_URL = "NeedTypesUrl";
+		public static string NeedTypeUrl
+		{
+			get
+			{
+				if ( properties.ContainsKey( NEED_TYPE_URL ) )
+					return ( string )properties[ NEED_TYPE_URL ]; // "/api/NeedTypes"
+				return @"/api/NeedTypes";
+			}
+			set
+			{
+				properties[ NEED_TYPE_URL ] = value;
+			}
+		}
+
+		private const string REGION_URL = "RegionUrl";
+		public static string RegionUrl
+		{
+			get
+			{
+				if ( properties.ContainsKey( REGION_URL ) )
+					return ( string )properties[ REGION_URL ]; // "/api/Regions"
+				return @"/api/Regions";
+			}
+			set
+			{
+				properties[ REGION_URL ] = value;
+			}
+		}
+
+		private const string COUNTRY_URL = "CountryUrl";
+		public static string CountryUrl
+		{
+			get
+			{
+				if ( properties.ContainsKey( COUNTRY_URL ) )
+					return ( string )properties[ COUNTRY_URL ]; // "/api/Countries"
+				return @"/api/Countries";
+			}
+			set
+			{
+				properties[ COUNTRY_URL ] = value;
+			}
+		}
+
 		private const string USER_ID = "UserId";
 		private const string EMAIL_ADDRESS = "Email";
 		private const string AGE_RANGE = "AgeRange";

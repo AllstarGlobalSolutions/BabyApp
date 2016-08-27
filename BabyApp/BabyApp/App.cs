@@ -70,7 +70,7 @@ namespace BabyApp
 
 					string loginString = "grant_type=password&username=" + Settings.Email + "&password=Password@123";
 					HttpContent content = new StringContent( loginString, Encoding.UTF8, "application/x-www-form-urlencoded" );
-					Uri uri = new Uri( Settings.LOGIN_URL, UriKind.Absolute );
+					Uri uri = new Uri( Settings.BaseUrl + Settings.LoginUrl, UriKind.Absolute );
 					HttpResponseMessage response = await client.PostAsync( uri, content );
 
 					if ( response.IsSuccessStatusCode )

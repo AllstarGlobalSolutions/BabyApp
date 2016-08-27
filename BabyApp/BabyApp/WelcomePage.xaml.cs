@@ -12,7 +12,7 @@ namespace BabyApp
 		public WelcomePage()
 		{
 			InitializeComponent();
-			NavigationPage.SetHasNavigationBar( this, false );
+//			NavigationPage.SetHasNavigationBar( this, false );
 
 			if ( String.IsNullOrEmpty( Settings.UserId ) )
 			{
@@ -41,6 +41,11 @@ namespace BabyApp
 	
 			// no need to return to the Welcome Page without restarting the app.
 			Navigation.RemovePage( this );
+		}
+
+		void OnToolbarItemClicked( object sender, EventArgs args )
+		{
+			Navigation.PushModalAsync( new NetworkSettings() );
 		}
 	}
 }

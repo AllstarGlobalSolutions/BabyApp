@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns ="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BabyApp.NetworkSettings" BackgroundColor="#3498DB">
+	<ContentPage.Padding>
+		<OnPlatform x:TypeArguments="Thickness" iOS="0,20,0,0" />
+	</ContentPage.Padding>
+	<ContentPage.Content>
+		<ScrollView BackgroundColor="#3498DB">
+			<StackLayout>
+					<Label Text="Base Url" />
+				<Entry x:Name="baseUrlEntry" />
+				<Label Text="Register Url" />
+				<Entry x:Name="registerUrlEntry" />
+				<Label Text="Login Url" />
+				<Entry x:Name="loginUrlEntry" />
+				<Label Text="Next Need Url" />
+				<Entry x:Name="nextNeedUrlEntry" />
+				<Label Text="Next Ad Url" />
+				<Entry x:Name="nextAdUrlEntry" />
+				<Label Text="Image Url" />
+				<Entry x:Name="imageUrlEntry" />
+				<Label Text="Activity Url" />
+				<Entry x:Name="activityUrlEntry" />
+				<Label Text="Device Url" />
+				<Entry x:Name="deviceUrlEntry" />
+				<Label Text="Need Type Url" />
+				<Entry x:Name="needTypeUrlEntry" />
+				<Label Text="Region Url" />
+				<Entry x:Name="regionUrlEntry" />
+				<Label Text="Country Url" />
+				<Entry x:Name="countryUrlEntry" />
+				<Button Text="Save" Clicked="OnSaveClicked" />
+			</StackLayout>
+		</ScrollView>
+	</ContentPage.Content>
+</ContentPage>

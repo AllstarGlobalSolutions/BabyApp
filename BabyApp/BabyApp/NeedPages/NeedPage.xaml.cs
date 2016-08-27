@@ -68,7 +68,7 @@ namespace BabyApp
 					client.DefaultRequestHeaders.Accept.Add( new MediaTypeWithQualityHeaderValue( "application/json" ) );
 					client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue( "Bearer", Settings.AccessToken );
 
-					Uri uri = new Uri( String.Format( Settings.NEXT_NEED_URL, Settings.UserId ), UriKind.Absolute );
+					Uri uri = new Uri( String.Format( Settings.BaseUrl + Settings.NextNeedUrl, Settings.UserId ), UriKind.Absolute );
 					HttpResponseMessage response = await client.GetAsync( uri );
 
 					if ( response.IsSuccessStatusCode )
@@ -80,10 +80,10 @@ namespace BabyApp
 						nvm.NeedId = need.NeedId;
 
 						string file1Id = need.FileId1.HasValue ? need.FileId1.ToString() : "";
-						nvm.Image1Url = String.Format( Settings.IMAGE_URL, file1Id );
+						nvm.Image1Url = String.Format( Settings.BaseUrl + Settings.ImageUrl, file1Id );
 
 						string file2Id = need.FileId2.HasValue ? need.FileId2.ToString() : file1Id;
-						nvm.Image2Url = String.Format( Settings.IMAGE_URL, file2Id );
+						nvm.Image2Url = String.Format( Settings.BaseUrl + Settings.ImageUrl, file2Id );
 
 						Uri imageUri = new Uri( nvm.Image1Url, UriKind.Absolute );
 						needImage.Source = ImageSource.FromUri( imageUri );
@@ -112,7 +112,7 @@ namespace BabyApp
 					client.DefaultRequestHeaders.Accept.Add( new MediaTypeWithQualityHeaderValue( "application/json" ) );
 					client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue( "Bearer", Settings.AccessToken );
 
-					Uri uri = new Uri( String.Format( Settings.NEXT_AD_URL, Settings.UserId ), UriKind.Absolute );
+					Uri uri = new Uri( String.Format( Settings.BaseUrl + Settings.NextAdUrl, Settings.UserId ), UriKind.Absolute );
 					HttpResponseMessage response = await client.GetAsync( uri );
 
 					if ( response.IsSuccessStatusCode )
@@ -120,7 +120,7 @@ namespace BabyApp
 						ad = JsonConvert.DeserializeObject<AdResponse>( await response.Content.ReadAsStringAsync() );
 
 						string fileId = ad.ImageId.HasValue ? ad.ImageId.ToString() : "";
-						Uri imageUri = new Uri( String.Format( Settings.NEXT_AD_URL, fileId ), UriKind.Absolute );
+						Uri imageUri = new Uri( String.Format( Settings.BaseUrl + Settings.NextAdUrl, fileId ), UriKind.Absolute );
 						adImage.Source = ImageSource.FromUri( imageUri );
 						adUri = new Uri( ad.ClickUrl );
 					}
